@@ -16,11 +16,12 @@
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
         <ul class="menu">
-          <li><a href="{{ url('/app') }}">Proceso de Garantia</a></li>
+          <li><a href="{{ url('/app') }}">Garantia</a></li>
           <li><a href="{{ url('/app/estructura') }}">Estructura</a></li>
-          <li><a href="#careers">Ponderacion</a></li>
-          <li><a href="#contact">Consideraciones</a></li>
-          <li><a href="#contact">Manual</a></li>
+          <li><a href="{{ url('/app/ponderacion') }}">Ponderacion</a></li>
+          <li><a href="{{ url('/app/consideraciones') }}">Consideraciones</a></li>
+          <li><a href="{{ url('/app/manual') }}">Manual</a></li>
+          <li><a href="{{ url('/app/proceso') }}">Iniciar Proceso</a></li>
         </ul>
     </header>
 
