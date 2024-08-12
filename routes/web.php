@@ -30,11 +30,11 @@ Route::get('/app/proceso', function(){
     return view('proceso/main');
 });
 
-
 Route::get('/app/login', function(){
-    return view('login');
+    return view('portafolio/login');
 });
 
 Route::get('/app/registro', function(){
     return view('registro');
 });
+
