@@ -37,7 +37,7 @@
           <span class="text-gray-600">Política de Privacidad</span>
           <span class="text-gray-600">Términos de Servicio</span>
         </div>
-      </footer>
+    </footer>
 
 </body>
 </html>

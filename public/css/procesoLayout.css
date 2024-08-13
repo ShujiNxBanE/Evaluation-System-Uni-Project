@@ -1,0 +1,250 @@
+/* Importaciones en CSS */
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
+
+*,
+*:before,
+*:after {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #3e94ec; /* Color de fondo del body */
+  font-family: "Roboto", helvetica, arial, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  color: #fff; /* Asegura que el texto sea blanco para visibilidad */
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+
+h1 {
+  font-family: 'Lobster', cursive;
+  font-weight: 300;
+  font-size: 2.5em;
+}
+
+.sidebar-btn {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+}
+
+label[for="sidebar-btn"] {
+  position: fixed;
+  left: 15px;
+  top: 15px;
+  z-index: 2;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' x='0px' y='0px' width='30px' height='30px' viewBox='0 0 30 30' enable-background='new 0 0 30 30' xml:space='preserve'><rect style='fill:rgb(255,255,255)' width='15' height='3'/><rect style='fill:rgb(255,255,255)' y='8' width='20' height='3'/><rect style='fill:rgb(255,255,255)' y='16' width='25' height='3'/></svg>");
+  background-size: contain;
+}
+
+.sidebar-btn + label,
+.content {
+  transition: left 0.1s;
+}
+
+.sidebar-btn:checked + label {
+  left: 245px;
+}
+
+.sidebar-btn:checked ~ .content {
+  left: 230px;
+}
+
+.sidebar {
+  list-style-type: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  background-color: #275e95; /* Color de fondo del sidebar */
+}
+
+.sidebar li {
+  background-color: #275e95; /* Color de fondo de los items del sidebar */
+  padding: 1em;
+  color: #D5DDE5; /* Color del texto de los items del sidebar */
+  width: 300px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  transition: all 50ms ease-in;
+}
+
+.sidebar li:hover {
+  background-color: #4E5066; /* Color de fondo al pasar el mouse */
+}
+
+.content {
+  min-height: 100%;
+  min-width: 100%;
+  background-color: #3e94ec; /* Color de fondo de la sección de contenido */
+  position: relative;
+  top: 0;
+  bottom: 100%;
+  left: 0;
+  z-index: 1;
+  padding: 4em;
+}
+
+/* Estilos de la tabla */
+
+div.table-title {
+  display: block;
+  margin: auto;
+  max-width: 600px;
+  padding: 5px;
+  width: 100%;
+}
+
+.table-title h3 {
+  color: #fafafa; /* Color del texto del título de la tabla */
+  font-size: 30px;
+  font-weight: 400;
+  font-style: normal;
+  font-family: "Roboto", helvetica, arial, sans-serif;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+  margin-top: 20px;
+}
+
+.table-fill {
+  background: white;
+  border-radius: 3px;
+  border-collapse: collapse;
+  height: 320px;
+  margin: auto;
+  max-width: 600px;
+  padding: 5px;
+  width: 100%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  animation: float 5s infinite;
+}
+
+th {
+  color: #D5DDE5;
+  background: #1b1e24;
+  border-bottom: 4px solid #9ea7af;
+  border-right: 1px solid #343a45;
+  font-size: 23px;
+  font-weight: 100;
+  padding: 24px;
+  text-align: left;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  vertical-align: middle;
+}
+
+th:first-child {
+  border-top-left-radius: 3px;
+}
+
+th:last-child {
+  border-top-right-radius: 3px;
+  border-right: none;
+}
+
+tr {
+  border-top: 1px solid #C1C3D1;
+  border-bottom: 1px solid #C1C3D1;
+  color: #666B85;
+  font-size: 16px;
+  font-weight: normal;
+  text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+}
+
+tr:hover td {
+  background: #4E5066;
+  color: #FFFFFF;
+  border-top: 1px solid #22262e;
+}
+
+tr:first-child {
+  border-top: none;
+}
+
+tr:last-child {
+  border-bottom: none;
+}
+
+tr:nth-child(odd) td {
+  background: #EBEBEB;
+}
+
+tr:nth-child(odd):hover td {
+  background: #4E5066;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius: 3px;
+}
+
+tr:last-child td:last-child {
+  border-bottom-right-radius: 3px;
+}
+
+td {
+  background: #FFFFFF;
+  padding: 20px;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 300;
+  font-size: 18px;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid #C1C3D1;
+}
+
+td:last-child {
+  border-right: 0px;
+}
+
+th.text-left {
+  text-align: left;
+}
+
+th.text-center {
+  text-align: center;
+}
+
+th.text-right {
+  text-align: right;
+}
+
+td.text-left {
+  text-align: left;
+}
+
+td.text-center {
+  text-align: center;
+}
+
+td.text-right {
+  text-align: right;
+}
+
+.table-fixed {
+    width: 100%; /* Asegura que la tabla ocupe todo el ancho del contenedor */
+    table-layout: fixed; /* Establece un diseño fijo para la tabla */
+}
+
+.table-fixed th{
+    width: 50%;
+}
+.table-fixed td {
+    width: 50%; /* Distribuye el ancho de las columnas */
+}
+
+/* Opcional: Ajusta el ancho del título para que ocupe todas las columnas */
+.table-fixed th[colspan="3"] {
+    text-align: center; /* Centra el texto del título */
+}
