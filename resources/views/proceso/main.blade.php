@@ -29,8 +29,10 @@
         </thead>
         <tbody class="table-hover">
         <tr>
-            <td class="text-left">Programa 1</td>
-            <td class="text-left">Evaluaciones realizadas: 1 / 9</td>
+            <td class="text-left"
+            onclick="window.location.href='{{ url('/app/proceso/datosInstitucionales') }}'">Programa 1</td>
+            <td class="text-left"
+            onclick="window.location.href='{{ url('/app/proceso/datosInstitucionales') }}'">Evaluaciones realizadas: 1 / 9</td>
         </tr>
         <tr>
             <td class="text-left">Programa 2</td>

@@ -137,9 +137,9 @@ th {
   background: #1b1e24;
   border-bottom: 4px solid #9ea7af;
   border-right: 1px solid #343a45;
-  font-size: 23px;
+  font-size: 18px;
   font-weight: 100;
-  padding: 24px;
+  padding: 14px;
   text-align: left;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   vertical-align: middle;
@@ -195,11 +195,11 @@ tr:last-child td:last-child {
 
 td {
   background: #FFFFFF;
-  padding: 20px;
+  padding: 10px;
   text-align: left;
   vertical-align: middle;
   font-weight: 300;
-  font-size: 18px;
+  font-size: 14px;
   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
   border-right: 1px solid #C1C3D1;
 }
@@ -235,16 +235,10 @@ td.text-right {
 .table-fixed {
     width: 100%; /* Asegura que la tabla ocupe todo el ancho del contenedor */
     table-layout: fixed; /* Establece un diseño fijo para la tabla */
-}
 
-.table-fixed th{
-    width: 50%;
-}
-.table-fixed td {
-    width: 50%; /* Distribuye el ancho de las columnas */
 }
 
 /* Opcional: Ajusta el ancho del título para que ocupe todas las columnas */
-.table-fixed th[colspan="3"] {
+.table-fixed th[colspan="4"] {
     text-align: center; /* Centra el texto del título */
 }
