@@ -22,10 +22,6 @@ Route::get('/app/consideraciones', function () {
     return view('portafolio/consideraciones');
 });
 
-Route::get('/app/manual', function(){
-    return view('portafolio/manual');
-});
-
 Route::get('/app/proceso', function(){
     return view('proceso/main');
 });
@@ -92,4 +88,12 @@ Route::get('/app/proceso/puntuacion', function(){
 
 Route::get('/app/proceso/subirInformeFinal', function(){
     return view('proceso/subirInformeFinal');
+});
+
+Route::get('/app/proceso/gestorArchivos', function(){
+    return view('gestor-archivos');
+});
+
+Route::get('/app/proceso/informeIndicador', function(){
+    return view('informe-indicador');
 });

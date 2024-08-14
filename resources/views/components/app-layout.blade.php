@@ -20,7 +20,6 @@
           <li><a href="{{ url('/app/estructura') }}">Estructura</a></li>
           <li><a href="{{ url('/app/ponderacion') }}">Ponderacion</a></li>
           <li><a href="{{ url('/app/consideraciones') }}">Consideraciones</a></li>
-          <li><a href="{{ url('/app/manual') }}">Manual</a></li>
           <li><a href="{{ url('/app/proceso') }}">Iniciar Proceso</a></li>
         </ul>
     </header>

@@ -32,9 +32,7 @@
                     <x-evidenciasBtn />
                 </td>
                 <td colspan="2">
-                    <div class="flex justify-center">
-                        <button class="border-2 border-gray-700 p-2 bg-gray-300 rounded-md text-black">Añadir Informe</button>
-                    </div>
+                    <x-anadirInformeBtn />
                 </td>
             </tr>
             <tr>
