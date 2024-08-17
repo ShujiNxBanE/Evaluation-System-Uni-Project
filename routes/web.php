@@ -6,7 +6,7 @@ use App\Http\Controllers\AuthController;
 
 Route::prefix('/app')->group(function (){
     Route::get('/home', function (){return view('welcome');})->name('welcome');
-    Route::get('/registro', function(){return view('registro');})->middleware('check_permission:create_user2');
+    Route::get('/registro', function(){return view('registro');})->middleware('check_permission:create_user');
 })->middleware('auth:sanctum');
 
 Route::get('/app', function(){
