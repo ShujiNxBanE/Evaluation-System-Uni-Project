@@ -4,9 +4,19 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
 
+// Rutas públicas
+// Rutas sin prefijo /app
+
 Route::prefix('/app')->group(function (){
+    // Rutas protegidas por autenticación
+    // Rutas con prefijo /app
     Route::get('/home', function (){return view('welcome');})->name('welcome');
     Route::get('/registro', function(){return view('registro');})->middleware('check_permission:create_user');
+
+    Route::prefix('/proceso')->group(function (){
+        // Rutas protegidas por autenticación
+        // Rutas con prefijo /app/proceso
+    });
 })->middleware('auth:sanctum');
 
 Route::get('/app', function(){

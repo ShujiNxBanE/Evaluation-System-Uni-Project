@@ -15,6 +15,7 @@ class PermissionSeeder extends Seeder
     {
         $permissions = [
             ['name' => 'create_user', 'description' => 'yo', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'create_program', 'description' => 'yo', 'created_at' => now(), 'updated_at' => now()]
         ];
 
         DB::Statement('SET FOREIGN_KEY_CHECKS=0;');
