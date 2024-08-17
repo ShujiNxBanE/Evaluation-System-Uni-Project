@@ -18,7 +18,9 @@
                 <h3>Portafolio Electrónico</h3>
             </div>
             <div class="sct login">
-                <form>
+                <form action="{{route('loginUser')}}">
+                    @method('GET')
+                    @csrf
                     <h3>Member Login</h3>
                     <input type="email" name="email" placeholder="Email">
                     <input type="password" name="password" placeholder="Password">

@@ -2,9 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\AuthController;
+
+Route::prefix('/app')->group(function (){
+    Route::get('/home', function (){return view('welcome');})->name('welcome');
+    Route::get('/registro', function(){return view('registro');});
+})->middleware('auth:sanctum');
 
 Route::get('/app', function(){
     return view('portafolio/main');
@@ -26,13 +29,15 @@ Route::get('/app/proceso', function(){
     return view('proceso/main');
 });
 
-Route::get('/app/login', function(){
+Route::get('/login', function(){
+    if (auth()->check()) {
+        return redirect()->route('welcome');
+    }
     return view('portafolio/login');
-});
+})->name('login');
 
-Route::get('/app/registro', function(){
-    return view('registro');
-});
+Route::get('/create/user', [AuthController::class, 'register'])->name('createUser');
+Route::get('/login/user', [AuthController::class, 'login'])->name('loginUser');
 
 Route::get('/app/proceso/datosInstitucionales', function(){
     return view('proceso/datosInstitucionales');
