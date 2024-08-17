@@ -97,3 +97,7 @@ Route::get('/app/proceso/gestorArchivos', function(){
 Route::get('/app/proceso/informeIndicador', function(){
     return view('informe-indicador');
 });
+
+Route::get('/prueba', function () {
+
+});
