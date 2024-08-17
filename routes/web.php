@@ -98,6 +98,14 @@ Route::get('/app/proceso/informeIndicador', function(){
     return view('informe-indicador');
 });
 
-Route::get('/prueba', function () {
+Route::get('/app/no-tienes-permisos', function () {
+    return view('no-permission');
+});
 
+Route::get('/app/crearPrograma', function(){
+    return view('create-program');
+});
+
+Route::get('/app/categoria', function(){
+    return view('categorias');
 });

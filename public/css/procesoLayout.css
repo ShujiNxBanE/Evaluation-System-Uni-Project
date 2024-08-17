@@ -9,7 +9,7 @@
 }
 
 body {
-  background-color: #3e94ec; /* Color de fondo del body */
+  background-color: #365e86; /* Color de fondo del body */
   font-family: "Roboto", helvetica, arial, sans-serif;
   font-size: 11px;
   font-weight: 400;
@@ -89,7 +89,7 @@ label[for="sidebar-btn"] {
 .content {
   min-height: 100%;
   min-width: 100%;
-  background-color: #3e94ec; /* Color de fondo de la sección de contenido */
+  background-color: #365e86; /* Color de fondo de la sección de contenido */
   position: relative;
   top: 0;
   bottom: 100%;
@@ -164,8 +164,8 @@ tr {
 }
 
 tr:hover td {
-  background: #4E5066;
-  color: #FFFFFF;
+  background: #EBEBEB;
+
   border-top: 1px solid #22262e;
 }
 
@@ -182,7 +182,7 @@ tr:nth-child(odd) td {
 }
 
 tr:nth-child(odd):hover td {
-  background: #4E5066;
+  background: #d8d8d8;
 }
 
 tr:last-child td:first-child {

@@ -5,14 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="{{ asset('css/procesoLayout.css')}}">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-      <div class="content">
-
-        {{ $slot }}
-
-      </div>
+<body class="bg-black text-white">
+    <div class="container text-center">
+        <p>No tienes permisos para realizar esta accion</p>
+    </div>
 </body>
 </html>
