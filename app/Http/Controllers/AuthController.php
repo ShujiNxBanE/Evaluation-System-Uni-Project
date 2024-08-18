@@ -11,7 +11,7 @@ class AuthController extends Controller
     function register(Request $request)
     {
         $user = new User([
-            'name' => $request->name . ' ' . $request->lastname,
+            'name' => $request->firstName . ' ' . $request->lastName,
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'role_id' => 2
