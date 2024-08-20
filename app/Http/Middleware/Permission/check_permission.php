@@ -22,9 +22,9 @@ class check_permission
             if(!Auth::user()->role->role_permission->map->permission_id->contains($id_permission)){
                 abort(403);
             }
-            return $next($request);
+            return $next($request); 
         } catch (\Throwable $th) {
-            return redirect()->route('estructura'); // cambiar a una vista de acceso denegado
+            return redirect()->route('no_permission'); // cambiar a una vista de acceso denegado
         }
     }
 }

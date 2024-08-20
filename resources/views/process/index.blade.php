@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <button onclick="window.location.href='{{ url('/app') }}'"
+    <button onclick="window.location.href='{{ route('portfolio_index') }}'"
     class=" border-gray-500 p-2 mt-2 ml-2 rounded-lg bg-black shadow-xl text-white"
     >
     Atras
@@ -30,9 +30,9 @@
         <tbody class="table-hover">
         <tr>
             <td class="text-left"
-            onclick="window.location.href='{{ url('/app/proceso/datosInstitucionales') }}'">Programa 1</td>
+            onclick="window.location.href='{{ url('/app/process/datosInstitucionales') }}'">Programa 1</td>
             <td class="text-left"
-            onclick="window.location.href='{{ url('/app/proceso/datosInstitucionales') }}'">Evaluaciones realizadas: 1 / 9</td>
+            onclick="window.location.href='{{ url('/app/process/datosInstitucionales') }}'">Evaluaciones realizadas: 1 / 9</td>
         </tr>
         <tr>
             <td class="text-left">Programa 2</td>

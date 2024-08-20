@@ -6,48 +6,50 @@ use App\Http\Controllers\AuthController;
 
 // Rutas públicas
 // Rutas sin prefijo /app
-
-Route::prefix('/app')->group(function (){
-    // Rutas protegidas por autenticación
-    // Rutas con prefijo /app
-    Route::get('/home', function (){return view('welcome');})->name('welcome');
-    Route::get('/registro', function(){return view('registro');})->middleware('check_permission:create_user');
-
-    Route::prefix('/proceso')->group(function (){
-        // Rutas protegidas por autenticación
-        // Rutas con prefijo /app/proceso
-    });
-})->middleware('auth:sanctum');
-
-Route::get('/app', function(){
-    return view('portafolio/main');
-});
-
-Route::get('/app/estructura', function(){
-    return view('portafolio/estructura');
-})->name('estructura');
-
-Route::get('/app/ponderacion', function(){
-    return view('portafolio/ponderacion');
-});
-
-Route::get('/app/consideraciones', function () {
-    return view('portafolio/consideraciones');
-});
-
-Route::get('/app/proceso', function(){
-    return view('proceso/main');
+Route::get('/', function () {
+    return redirect()->route('login');
 });
 
 Route::get('/login', function(){
-    if (auth()->check()) {
-        return redirect()->route('welcome');
+    if (Auth::check()) {
+        return redirect()->route('portfolio_index');
     }
-    return view('portafolio/login');
+    return view('/login');
 })->name('login');
 
 Route::get('/create/user', [AuthController::class, 'register'])->name('createUser');
 Route::get('/login/user', [AuthController::class, 'login'])->name('loginUser');
+Route::post('/logout' , [AuthController::class, 'logout'])->name('logoutUser');
+
+Route::prefix('/portfolio')->group(function (){
+    // Rutas protegidas por autenticación
+    // Rutas con prefijo /portfolio
+
+    Route::get('/no_permission', function () { return view('no_permission'); })->name('no_permission');
+
+    Route::get('/index', function(){ return view('portfolio/index'); })->name('portfolio_index');
+    Route::get('/structure', function(){ return view('portfolio/structure'); })->name('structure');
+    Route::get('/ponderation', function(){ return view('portfolio/ponderation'); })->name('ponderation');
+    Route::get('/considerations', function () { return view('portfolio/considerations'); })->name('considerations');
+
+    Route::prefix('/admin')->group(function(){
+        Route::get('/create_user', function(){return view('admin_views/create_user');})
+                    ->middleware('check_permission:create_user')->name('create_user');
+        Route::get('/create_program', function(){ return view('admin_views/create_program'); })
+                    ->middleware('check_permission:create_program')->name('create_program');
+    });
+
+    Route::prefix('/process')->group(function (){
+        // Rutas protegidas por autenticación
+        // Rutas con prefijo /app/proceso
+        Route::get('/index', function(){ return view('process/index'); })->name('process_index');
+
+    });
+})->middleware('auth:sanctum');
+
+Route::get('/app/categoria', function(){
+    return view('categorias');
+});
 
 Route::get('/app/proceso/datosInstitucionales', function(){
     return view('proceso/datosInstitucionales');
@@ -113,14 +115,4 @@ Route::get('/app/proceso/informeIndicador', function(){
     return view('informe-indicador');
 });
 
-Route::get('/app/no-tienes-permisos', function () {
-    return view('no-permission');
-});
 
-Route::get('/app/crearPrograma', function(){
-    return view('create-program');
-});
-
-Route::get('/app/categoria', function(){
-    return view('categorias');
-});

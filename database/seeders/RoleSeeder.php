@@ -21,7 +21,7 @@ class RoleSeeder extends Seeder
                 'description' => 'Rol con permisos de administrador',
             ],
             [
-                'name' => 'usuario',
+                'name' => 'user',
                 'description' => 'Rol con muchas restricciones',
             ]
         ]);

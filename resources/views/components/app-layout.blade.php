@@ -12,15 +12,27 @@
 <body class="flex flex-col min-h-screen">
 
     <header class="header">
-        <a href="{{ url('/app') }}" class="logo">Portafolio Electr&oacute;nico | Tarjeta de puntuaci&oacute;n</a>
+        <a href="{{ route('portfolio_index') }}" class="logo">Portafolio Electr&oacute;nico | Tarjeta de puntuaci&oacute;n</a>
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
         <ul class="menu">
-          <li><a href="{{ url('/app') }}">Garantia</a></li>
-          <li><a href="{{ url('/app/estructura') }}">Estructura</a></li>
-          <li><a href="{{ url('/app/ponderacion') }}">Ponderacion</a></li>
-          <li><a href="{{ url('/app/consideraciones') }}">Consideraciones</a></li>
-          <li><a href="{{ url('/app/proceso') }}">Iniciar Proceso</a></li>
+          <li><a href="{{ route('portfolio_index') }}">Garantia</a></li>
+          <li><a href="{{ route('structure') }}">Estructura</a></li>
+          <li><a href="{{ route('ponderation') }}">Ponderacion</a></li>
+          <li><a href="{{ route('considerations') }}">Consideraciones</a></li>
+          <li>
+            @if(Auth::user()->role_id == 1)
+                <a href="{{ route('create_program') }}">Ver Programas</a>
+            @else
+                <a href="{{ route('process_index') }}">Iniciar Proceso</a>
+            @endif
+        </li>
+          <li>
+            <form id="logout-form" action="{{ route('logoutUser') }}" method="POST">
+                @csrf
+                <button type="submit">Logout</button>
+            </form>
+          </li>
         </ul>
     </header>
 

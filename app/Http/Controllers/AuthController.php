@@ -32,12 +32,13 @@ class AuthController extends Controller
         \auth()->user()->tokens()->delete();
         \auth()->user()->createToken('token')->plainTextToken;
 
-        return redirect()->route('welcome');
+        return redirect()->route('portfolio_index');
     }
 
     function logout()
     {
         \auth()->user()->tokens()->delete();
+        auth()->logout();
         return redirect()->route('login');
     }
 }
