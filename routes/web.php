@@ -1,13 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProgramController;
-use App\Models\Program;
 
-// Rutas públicas
-// Rutas sin prefijo /app
 Route::get('/', function () {
     return redirect()->route('login');
 });
@@ -24,9 +20,6 @@ Route::get('/login/user', [AuthController::class, 'login'])->name('loginUser');
 Route::post('/logout' , [AuthController::class, 'logout'])->name('logoutUser');
 
 Route::prefix('/portfolio')->group(function (){
-    // Rutas protegidas por autenticación
-    // Rutas con prefijo /portfolio
-
     Route::get('/no_permission', function () { return view('no_permission'); })->name('no_permission');
 
     Route::get('/index', function(){ return view('portfolio/index'); })->name('portfolio_index');
@@ -37,24 +30,33 @@ Route::prefix('/portfolio')->group(function (){
     Route::prefix('/admin')->group(function(){
         Route::get('/create_user', function(){return view('create_user');})
                     ->middleware('check_permission:create_user')->name('create_user');
-        // Route::get('/create_program', function(){ return view('admin_views/create_program'); })
-        //             ->middleware('check_permission:create_program')->name('create_program');
 
-        Route::get('/programs', [ProgramController::class, 'index'])->name('programs');
-        Route::get('/programs/create', [ProgramController::class, 'create'])->name('create_programs');
-        Route::get('/create_new_program', [ProgramController::class, 'store'])->name('create_new_program');
-        Route::get('/programs/{program}', [ProgramController::class, 'show'])->name('show_program_details');
-        Route::get('/programs/{program}/edit', [ProgramController::class, 'edit'])->name('edit_program');
-        Route::get('/programs/{program}/update', [ProgramController::class, 'update'])->name('update_program');
-        Route::delete('/programs/{program}', [ProgramController::class, 'destroy'])->name('destroy_program');
+        Route::get('/programs', [ProgramController::class, 'index'])
+                    ->middleware('check_permission:show_admin_programs')->name('programs');
+
+        Route::get('/programs/create', [ProgramController::class, 'create'])
+                    ->middleware('check_permission:create_programs')->name('create_programs');
+
+        Route::get('/create_new_program', [ProgramController::class, 'store'])
+                    ->middleware('check_permission:create_programs')->name('create_new_program');
+
+        Route::get('/programs/{program}', [ProgramController::class, 'show'])
+                    ->middleware('check_permission:show_details_admin_programs')->name('show_program_details');
+
+        Route::get('/programs/{program}/edit', [ProgramController::class, 'edit'])
+                    ->middleware('check_permission:edit_programs')->name('edit_program');
+
+        Route::get('/programs/{program}/update', [ProgramController::class, 'update'])
+                    ->middleware('check_permission:update_programs')->name('update_program');
+
+        Route::delete('/programs/{program}', [ProgramController::class, 'destroy'])
+                    ->middleware('check_permission:destroy_programs')->name('destroy_program');
     });
 
     Route::prefix('/process')->group(function (){
-        // Rutas protegidas por autenticación
-        // Rutas con prefijo /app/proceso
         Route::get('/index', function(){ return view('process/index'); })->name('process_index');
-
     });
+
 })->middleware('auth:sanctum');
 
 Route::get('/app/categoria', function(){
