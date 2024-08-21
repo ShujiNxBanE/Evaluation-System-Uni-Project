@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProgramController;
+use App\Models\Program;
 
 // Rutas públicas
 // Rutas sin prefijo /app
@@ -33,10 +35,18 @@ Route::prefix('/portfolio')->group(function (){
     Route::get('/considerations', function () { return view('portfolio/considerations'); })->name('considerations');
 
     Route::prefix('/admin')->group(function(){
-        Route::get('/create_user', function(){return view('admin_views/create_user');})
+        Route::get('/create_user', function(){return view('create_user');})
                     ->middleware('check_permission:create_user')->name('create_user');
-        Route::get('/create_program', function(){ return view('admin_views/create_program'); })
-                    ->middleware('check_permission:create_program')->name('create_program');
+        // Route::get('/create_program', function(){ return view('admin_views/create_program'); })
+        //             ->middleware('check_permission:create_program')->name('create_program');
+
+        Route::get('/programs', [ProgramController::class, 'index'])->name('programs');
+        Route::get('/programs/create', [ProgramController::class, 'create'])->name('create_programs');
+        Route::get('/create_new_program', [ProgramController::class, 'store'])->name('create_new_program');
+        Route::get('/programs/{program}', [ProgramController::class, 'show'])->name('show_program_details');
+        Route::get('/programs/{program}/edit', [ProgramController::class, 'edit'])->name('edit_program');
+        Route::get('/programs/{program}/update', [ProgramController::class, 'update'])->name('update_program');
+        Route::delete('/programs/{program}', [ProgramController::class, 'destroy'])->name('destroy_program');
     });
 
     Route::prefix('/process')->group(function (){

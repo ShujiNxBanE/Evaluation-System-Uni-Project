@@ -22,7 +22,7 @@
           <li><a href="{{ route('considerations') }}">Consideraciones</a></li>
           <li>
             @if(Auth::user()->role_id == 1)
-                <a href="{{ route('create_program') }}">Ver Programas</a>
+                <a href="{{ route('programs') }}">Ver Programas</a>
             @else
                 <a href="{{ route('process_index') }}">Iniciar Proceso</a>
             @endif
