@@ -27,6 +27,9 @@
         <button class="border-2 border-black rounded-xl p-1 bg-gray-300">
             <a href="{{ route('evaluations')}}">Indicadores</a>
         </button>
+        <button class="border-2 border-black rounded-xl p-1 bg-gray-300">
+            <a href="{{ route('evidences')}}">Evidencias</a>
+        </button>
     </div>
 
     <table class="table-fill">

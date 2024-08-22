@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\EvidenceController;
 use App\Http\Controllers\ProgramController;
 
 Route::get('/', function () {
@@ -29,63 +30,75 @@ Route::prefix('/portfolio')->group(function (){
     Route::get('/ponderation', function(){ return view('portfolio/ponderation'); })->name('ponderation');
     Route::get('/considerations', function () { return view('portfolio/considerations'); })->name('considerations');
 
-    Route::prefix('/admin')->group(function(){
-        Route::get('/create_user', function(){return view('create_user');})
-                    ->middleware('check_permission:create_user')->name('create_user');
+    Route::middleware('check_permission:create_user, create, show, edit, update, destroy, show_details')->group(function(){
+        Route::prefix('/admin')->group(function(){
 
-        Route::get('/programs', [ProgramController::class, 'index'])
-                    ->middleware('check_permission:show_admin_programs')->name('programs');
+            Route::get('/create_user', function(){return view('create_user');})->name('create_user');
 
-        Route::get('/programs/create', [ProgramController::class, 'create'])
-                    ->middleware('check_permission:create_programs')->name('create_programs');
+            // Route for programs crud
 
-        Route::get('/create_new_program', [ProgramController::class, 'store'])
-                    ->middleware('check_permission:create_programs')->name('create_new_program');
+            Route::get('/programs', [ProgramController::class, 'index'])->name('programs');
 
-        Route::get('/programs/{program}', [ProgramController::class, 'show'])
-        ->middleware('check_permission:show_detail_admin_programs')->name('show_program_details');
+            Route::get('/programs/create', [ProgramController::class, 'create'])->name('create_programs');
 
-        Route::get('/programs/{program}/edit', [ProgramController::class, 'edit'])
-                    ->middleware('check_permission:edit_programs')->name('edit_program');
+            Route::get('/create_new_program', [ProgramController::class, 'store'])->name('create_new_program');
 
-        Route::get('/programs/{program}/update', [ProgramController::class, 'update'])
-                    ->middleware('check_permission:update_programs')->name('update_program');
+            Route::get('/programs/{program}', [ProgramController::class, 'show'])->name('show_program_details');
 
-        Route::delete('/programs/{program}', [ProgramController::class, 'destroy'])
-                    ->middleware('check_permission:destroy_programs')->name('destroy_program');
+            Route::get('/programs/{program}/edit', [ProgramController::class, 'edit'])->name('edit_program');
 
+            Route::get('/programs/{program}/update', [ProgramController::class, 'update'])->name('update_program');
 
-        Route::get('/categories', [CategoryController::class, 'index'])
-                    ->middleware('check_permission:show_admin_categories')->name('categories');
+            Route::delete('/programs/{program}', [ProgramController::class, 'destroy'])->name('destroy_program');
 
-        Route::get('/categories/create', [CategoryController::class, 'create'])
-                    ->middleware('check_permission:create_categories')->name('create_categories');
+            //Route for categories crud
 
-        Route::get('/create_new_category', [CategoryController::class, 'store'])
-                    ->middleware('check_permission:create_categories')->name('create_new_category');
+            Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
 
-        Route::get('/categories/{category}', [CategoryController::class, 'show'])
-                    ->middleware('check_permission:show_detail_admin_categories')->name('show_category_details');
+            Route::get('/categories/create', [CategoryController::class, 'create'])->name('create_categories');
 
-        Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])
-                    ->middleware('check_permission:edit_categories')->name('edit_category');
+            Route::get('/create_new_category', [CategoryController::class, 'store'])->name('create_new_category');
 
-        Route::get('/categories/{category}/update', [CategoryController::class, 'update'])
-                    ->middleware('check_permission:update_categories')->name('update_category');
+            Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('show_category_details');
 
-        Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])
-                    ->middleware('check_permission:destroy_categories')->name('destroy_category');
+            Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('edit_category');
 
-        Route::get('/evaluations', [EvaluationController::class, 'index'])->name('evaluations');
+            Route::get('/categories/{category}/update', [CategoryController::class, 'update'])->name('update_category');
 
-        Route::get('/evaluations/create', [EvaluationController::class, 'create'])->name('create_evaluations');
+            Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('destroy_category');
 
-        Route::get('/create_new_evaluation', [EvaluationController::class, 'store'])->name('create_new_evaluation');
+            //Route for evaluations crud
 
-        Route::get('/evaluations/{evaluation}', [EvaluationController::class, 'show'])->name('show_evaluation_details');
+            Route::get('/evaluations', [EvaluationController::class, 'index'])->name('evaluations');
 
-        Route::get('/evaluations/{evaluation}/edit', [EvaluationController::class, 'edit'])->name('edit_evaluation');
+            Route::get('/evaluations/create', [EvaluationController::class, 'create'])->name('create_evaluations');
 
+            Route::get('/create_new_evaluation', [EvaluationController::class, 'store'])->name('create_new_evaluation');
+
+            Route::get('/evaluations/{evaluation}', [EvaluationController::class, 'show'])->name('show_evaluation_details');
+
+            Route::get('/evaluations/{evaluation}/edit', [EvaluationController::class, 'edit'])->name('edit_evaluation');
+
+            Route::get('/evaluations/{evaluation}/update', [EvaluationController::class, 'update'])->name('update_evaluation');
+
+            Route::delete('/evaluations/{evaluation}', [EvaluationController::class, 'destroy'])->name('destroy_evaluation');
+
+            //Route for evidences crud
+
+            Route::get('/evidences', [EvidenceController::class, 'index'])->name('evidences');
+
+            Route::get('/evidences/create', [EvidenceController::class, 'create'])->name('create_evidences');
+
+            Route::get('/create_new_evidence', [EvidenceController::class, 'store'])->name('create_new_evidence');
+
+            Route::get('/evidences/{evidence}', [EvidenceController::class, 'show'])->name('show_evidence_details');
+
+            Route::get('/evidences/{evidence}/edit', [EvidenceController::class, 'edit'])->name('edit_evidence');
+
+            Route::get('/evidences/{evidence}/update', [EvidenceController::class, 'update'])->name('update_evidence');
+
+            Route::delete('/evidences/{evidence}', [EvidenceController::class, 'destroy'])->name('destroy_evidence');
+        });
     });
 
     Route::prefix('/process')->group(function (){
