@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\EvidenceController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\ReportController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -98,6 +99,22 @@ Route::prefix('/portfolio')->group(function (){
             Route::get('/evidences/{evidence}/update', [EvidenceController::class, 'update'])->name('update_evidence');
 
             Route::delete('/evidences/{evidence}', [EvidenceController::class, 'destroy'])->name('destroy_evidence');
+
+            //Route for reports crud
+
+            Route::get('/reports', [ReportController::class, 'index'])->name('reports');
+
+            Route::get('/reports/create', [ReportController::class, 'create'])->name('create_reports');
+
+            Route::get('/create_new_report', [ReportController::class, 'store'])->name('create_new_report');
+
+            Route::get('/reports/{report}', [ReportController::class, 'show'])->name('show_report_details');
+
+            Route::get('/reports/{report}/edit', [ReportController::class, 'edit'])->name('edit_report');
+
+            Route::get('/reports/{report}/update', [ReportController::class, 'update'])->name('update_report');
+
+            Route::delete('/reports/{report}', [ReportController::class, 'destroy'])->name('destroy_report');
         });
     });
 
