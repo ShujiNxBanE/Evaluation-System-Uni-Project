@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\EvidenceController;
+use App\Http\Controllers\Institutional_DataController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\ReportController;
 
@@ -115,6 +116,22 @@ Route::prefix('/portfolio')->group(function (){
             Route::get('/reports/{report}/update', [ReportController::class, 'update'])->name('update_report');
 
             Route::delete('/reports/{report}', [ReportController::class, 'destroy'])->name('destroy_report');
+
+            //Route for institutional_datas crud
+
+            Route::get('/institutional_datas', [Institutional_DataController::class, 'index'])->name('institutional_datas');
+
+            Route::get('/institutional_datas/create', [Institutional_DataController::class, 'create'])->name('create_institutional_datas');
+
+            Route::get('/create_new_institutional_data', [Institutional_DataController::class, 'store'])->name('create_new_institutional_data');
+
+            Route::get('/institutional_datas/{institutional_data}', [Institutional_DataController::class, 'show'])->name('show_institutional_data_details');
+
+            Route::get('/institutional_datas/{institutional_data}/edit', [Institutional_DataController::class, 'edit'])->name('edit_institutional_data');
+
+            Route::get('/institutional_datas/{institutional_data}/update', [Institutional_DataController::class, 'update'])->name('update_institutional_data');
+
+            Route::delete('/institutional_datas/{institutional_data}', [Institutional_DataController::class, 'destroy'])->name('destroy_institutional_data');
         });
     });
 
