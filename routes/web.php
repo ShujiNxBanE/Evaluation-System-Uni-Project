@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\ProgramController;
 
 Route::get('/', function () {
@@ -42,7 +43,7 @@ Route::prefix('/portfolio')->group(function (){
                     ->middleware('check_permission:create_programs')->name('create_new_program');
 
         Route::get('/programs/{program}', [ProgramController::class, 'show'])
-                    ->middleware('check_permission:show_details_admin_programs')->name('show_program_details');
+        ->middleware('check_permission:show_detail_admin_programs')->name('show_program_details');
 
         Route::get('/programs/{program}/edit', [ProgramController::class, 'edit'])
                     ->middleware('check_permission:edit_programs')->name('edit_program');
@@ -64,7 +65,7 @@ Route::prefix('/portfolio')->group(function (){
                     ->middleware('check_permission:create_categories')->name('create_new_category');
 
         Route::get('/categories/{category}', [CategoryController::class, 'show'])
-                    ->middleware('check_permission:show_details_admin_categories')->name('show_category_details');
+                    ->middleware('check_permission:show_detail_admin_categories')->name('show_category_details');
 
         Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])
                     ->middleware('check_permission:edit_categories')->name('edit_category');
@@ -74,6 +75,16 @@ Route::prefix('/portfolio')->group(function (){
 
         Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])
                     ->middleware('check_permission:destroy_categories')->name('destroy_category');
+
+        Route::get('/evaluations', [EvaluationController::class, 'index'])->name('evaluations');
+
+        Route::get('/evaluations/create', [EvaluationController::class, 'create'])->name('create_evaluations');
+
+        Route::get('/create_new_evaluation', [EvaluationController::class, 'store'])->name('create_new_evaluation');
+
+        Route::get('/evaluations/{evaluation}', [EvaluationController::class, 'show'])->name('show_evaluation_details');
+
+        Route::get('/evaluations/{evaluation}/edit', [EvaluationController::class, 'edit'])->name('edit_evaluation');
 
     });
 
