@@ -21,6 +21,9 @@
         <button class="border-2 border-black rounded-xl p-1 bg-gray-300">
             <a href="{{ route('create_programs')}}">Nuevo Programa</a>
         </button>
+        <button class="border-2 border-black rounded-xl p-1 bg-gray-300">
+            <a href="{{ route('categories')}}">Categorias</a>
+        </button>
     </div>
 
     <table class="table-fill">

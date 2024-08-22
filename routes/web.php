@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProgramController;
 
 Route::get('/', function () {
@@ -51,6 +52,22 @@ Route::prefix('/portfolio')->group(function (){
 
         Route::delete('/programs/{program}', [ProgramController::class, 'destroy'])
                     ->middleware('check_permission:destroy_programs')->name('destroy_program');
+
+
+        Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
+
+        Route::get('/categories/create', [CategoryController::class, 'create'])->name('create_categories');
+
+        Route::get('/create_new_category', [CategoryController::class, 'store'])->name('create_new_category');
+
+        Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('show_category_details');
+
+        Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('edit_category');
+
+        Route::get('/categories/{category}/update', [CategoryController::class, 'update'])->name('update_category');
+
+        Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('destroy_category');
+
     });
 
     Route::prefix('/process')->group(function (){
