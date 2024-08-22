@@ -54,19 +54,26 @@ Route::prefix('/portfolio')->group(function (){
                     ->middleware('check_permission:destroy_programs')->name('destroy_program');
 
 
-        Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
+        Route::get('/categories', [CategoryController::class, 'index'])
+                    ->middleware('check_permission:show_admin_categories')->name('categories');
 
-        Route::get('/categories/create', [CategoryController::class, 'create'])->name('create_categories');
+        Route::get('/categories/create', [CategoryController::class, 'create'])
+                    ->middleware('check_permission:create_categories')->name('create_categories');
 
-        Route::get('/create_new_category', [CategoryController::class, 'store'])->name('create_new_category');
+        Route::get('/create_new_category', [CategoryController::class, 'store'])
+                    ->middleware('check_permission:create_categories')->name('create_new_category');
 
-        Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('show_category_details');
+        Route::get('/categories/{category}', [CategoryController::class, 'show'])
+                    ->middleware('check_permission:show_details_admin_categories')->name('show_category_details');
 
-        Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('edit_category');
+        Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])
+                    ->middleware('check_permission:edit_categories')->name('edit_category');
 
-        Route::get('/categories/{category}/update', [CategoryController::class, 'update'])->name('update_category');
+        Route::get('/categories/{category}/update', [CategoryController::class, 'update'])
+                    ->middleware('check_permission:update_categories')->name('update_category');
 
-        Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('destroy_category');
+        Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])
+                    ->middleware('check_permission:destroy_categories')->name('destroy_category');
 
     });
 

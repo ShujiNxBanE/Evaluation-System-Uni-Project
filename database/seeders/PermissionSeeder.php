@@ -21,6 +21,12 @@ class PermissionSeeder extends Seeder
             ['name' => 'update_programs', 'description' => 'yo', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'destroy_programs', 'description' => 'yo', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'show_detail_admin_programs', 'description' => 'yo', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'create_categories', 'description' => 'yo', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'show_admin_categories', 'description' => 'yo', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'edit_categories', 'description' => 'yo', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'update_categories', 'description' => 'yo', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'destroy_categories', 'description' => 'yo', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'show_detail_admin_categories', 'description' => 'yo', 'created_at' => now(), 'updated_at' => now()],
         ];
 
         DB::Statement('SET FOREIGN_KEY_CHECKS=0;');
