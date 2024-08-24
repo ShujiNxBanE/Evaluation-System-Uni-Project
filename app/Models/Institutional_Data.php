@@ -9,4 +9,9 @@ class Institutional_Data extends Model
 {
     use HasFactory;
     protected $table = 'institutional_datas';
+
+    public function program()
+    {
+        return $this->hasOne(Program::class);
+    }
 }

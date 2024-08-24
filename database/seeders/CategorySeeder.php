@@ -30,8 +30,6 @@ class CategorySeeder extends Seeder
                 return [
                     'name' => $category['name'],
                     'description' => $category['description'],
-                    'created_at' => now(),
-                    'updated_at' => now(),
                 ];
             }, $this->categories));
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');

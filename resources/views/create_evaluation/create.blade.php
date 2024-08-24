@@ -5,7 +5,17 @@
     @csrf
 
     <label>Description:</label>
-    <textarea name="description" id="" cols="30" rows="4"></textarea>
+    <textarea name="description" cols="30" rows="4"></textarea>
+    <br>
+    <select name="category_id" class="form-control" required>
+
+        <option value="">Seleccione la Categoria</option>
+
+        @foreach ($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->name }}</option>
+        @endforeach
+
+    </select>
     <button type="submit">
         Crear
     </button>

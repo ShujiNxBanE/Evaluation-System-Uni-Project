@@ -6,6 +6,13 @@
 
 <a href="{{ route('edit_category', ['category' => $category->id]) }}">Editar Categoria</a>
 
+@foreach ($category->evaluations as $evaluation)
+    <h3>Numero de evaluacion: {{ $evaluation->id }}</h3>
+    <p>
+        Descripcion: {{ $evaluation->description }}
+    </p>
+@endforeach
+
 <form action="{{ route('destroy_category', ['category' => $category->id]) }}" method="POST">
     @method('DELETE')
     @csrf

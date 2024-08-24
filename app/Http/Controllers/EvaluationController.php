@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Evaluation;
 use Illuminate\Http\Request;
 
@@ -15,14 +16,15 @@ class EvaluationController extends Controller
 
     public function create()
     {
-        return view('create_evaluation.create');
+        $categories = Category::all();
+        return view('create_evaluation.create', compact('categories'));
     }
 
     public function store(Request $request)
     {
         $evaluation = new Evaluation();
         $evaluation->description = $request->description;
-        $evaluation->category_id = 12;
+        $evaluation->category_id = $request->category_id;
         $evaluation->save();
 
         return redirect()->route('evaluations');

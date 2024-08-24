@@ -24,9 +24,11 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->integer('number_of_hours');
+            $table->integer('total_students');
             $table->integer('total_teaching_staff');
             $table->integer('total_administrative_staff');
             $table->string('certificate');
+            $table->foreignId('program_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

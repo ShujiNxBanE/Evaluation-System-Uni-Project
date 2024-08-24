@@ -34,7 +34,7 @@ class ProgramController extends Controller
 
     public function show($program)
     {
-        $program = Program::find($program);
+        $program = Program::with('institutional_data')->findOrFail($program);
         return view('create_program.show', compact('program'));
     }
 

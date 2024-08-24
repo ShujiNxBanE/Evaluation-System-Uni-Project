@@ -30,7 +30,7 @@ class CategoryController extends Controller
 
     public function show($category)
     {
-        $category = Category::find($category);
+        $category = Category::with('evaluations')->findOrFail($category);
         return view('create_category.show', compact('category'));
     }
 
