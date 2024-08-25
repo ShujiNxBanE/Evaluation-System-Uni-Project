@@ -13,4 +13,9 @@ class Evaluation extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function evidences()
+    {
+        return $this->hasMany(Evidence::class);
+    }
 }
