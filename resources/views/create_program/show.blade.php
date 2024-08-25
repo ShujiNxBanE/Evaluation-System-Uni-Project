@@ -9,3 +9,17 @@
     <br>
     Año de creacion: {{ $program->institutional_data->creation_year }}
 </h3>
+
+<h3>
+    Categorias del programa
+</h3>
+
+<ul>
+    @foreach ($program->categories as $category)
+        <li>
+            <a href="{{ route('category_evaluations', ['category' => $category->id]) }}">{{ $category->name }}</a>
+        </li>
+    @endforeach
+</ul>
+
+

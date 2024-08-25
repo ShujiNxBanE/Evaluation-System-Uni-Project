@@ -13,4 +13,9 @@ class Program extends Model
     {
         return $this->hasOne(Institutional_Data::class);
     }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'category_program');
+    }
 }

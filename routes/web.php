@@ -24,7 +24,7 @@ Route::get('/create/user', [AuthController::class, 'register'])->name('createUse
 Route::get('/login/user', [AuthController::class, 'login'])->name('loginUser');
 Route::post('/logout' , [AuthController::class, 'logout'])->name('logoutUser');
 
-Route::prefix('/portfolio')->group(function (){
+Route::prefix('/portfolio')->middleware('auth:sanctum')->group(function (){
     Route::get('/no_permission', function () { return view('no_permission'); })->name('no_permission');
 
     Route::get('/index', function(){ return view('portfolio/index'); })->name('portfolio_index');
@@ -68,6 +68,9 @@ Route::prefix('/portfolio')->group(function (){
             Route::get('/categories/{category}/update', [CategoryController::class, 'update'])->name('update_category');
 
             Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('destroy_category');
+
+            route::get('/categories/{category}/evaluations', [EvaluationController::class, 'showByCategory'])->name('category_evaluations');
+
 
             //Route for evaluations crud
 
@@ -138,8 +141,7 @@ Route::prefix('/portfolio')->group(function (){
     Route::prefix('/process')->group(function (){
         Route::get('/index', function(){ return view('process/index'); })->name('process_index');
     });
-
-})->middleware('auth:sanctum');
+});
 
 Route::get('/app/categoria', function(){
     return view('categorias');

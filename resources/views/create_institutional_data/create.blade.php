@@ -45,9 +45,9 @@
     <input type="text" name="number_of_hours">
     <br>
 
-    {{-- <label>Total alumnos:</label>
-    <input type="text" name="total_teaching_staff">
-    <br> --}}
+    <label>Total alumnos:</label>
+    <input type="text" name="total_students">
+    <br>
 
     <label>Total personal docente:</label>
     <input type="text" name="total_teaching_staff">

@@ -14,15 +14,15 @@ class CategoryProgramSeeder extends Seeder
     public function run(): void
     {
         $category_program = [
-            ['program_id' => 1, 'category_id' => 1],
-            ['program_id' => 1, 'category_id' => 2],
-            ['program_id' => 1, 'category_id' => 3],
-            ['program_id' => 1, 'category_id' => 4],
-            ['program_id' => 1, 'category_id' => 5],
-            ['program_id' => 1, 'category_id' => 6],
-            ['program_id' => 1, 'category_id' => 7],
-            ['program_id' => 1, 'category_id' => 8],
-            ['program_id' => 1, 'category_id' => 9],
+            ['program_id' => 1, 'category_id' => 1, 'created_at' => now(), 'updated_at' => now()],
+            ['program_id' => 1, 'category_id' => 2, 'created_at' => now(), 'updated_at' => now()],
+            ['program_id' => 1, 'category_id' => 3, 'created_at' => now(), 'updated_at' => now()],
+            ['program_id' => 1, 'category_id' => 4, 'created_at' => now(), 'updated_at' => now()],
+            ['program_id' => 1, 'category_id' => 5, 'created_at' => now(), 'updated_at' => now()],
+            ['program_id' => 1, 'category_id' => 6, 'created_at' => now(), 'updated_at' => now()],
+            ['program_id' => 1, 'category_id' => 7, 'created_at' => now(), 'updated_at' => now()],
+            ['program_id' => 1, 'category_id' => 8, 'created_at' => now(), 'updated_at' => now()],
+            ['program_id' => 1, 'category_id' => 9, 'created_at' => now(), 'updated_at' => now()],
         ];
 
         DB::Statement('SET FOREIGN_KEY_CHECKS=0;');
