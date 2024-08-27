@@ -21,23 +21,19 @@
         <p class="text-center text-white ">Estimado evaluador, a continuación seleccione el programa a evaluar.</p>
     </div>
 
-
-
     <table class="table-fill">
         <thead>
             <th class="text-center" colspan="2">Selección del Programa</th>
         </thead>
         <tbody class="table-hover">
+        @foreach ($programs as $program)
         <tr>
             <td class="text-left"
-            onclick="window.location.href='{{ url('/app/process/datosInstitucionales') }}'">Programa 1</td>
+            onclick="window.location.href='{{ url('/app/process/datosInstitucionales') }}'">{{ $program->name}}</td>
             <td class="text-left"
             onclick="window.location.href='{{ url('/app/process/datosInstitucionales') }}'">Evaluaciones realizadas: 1 / 9</td>
         </tr>
-        <tr>
-            <td class="text-left">Programa 2</td>
-            <td class="text-left">Evaluaciones realizadas: 2 / 9</td>
-        </tr>
+        @endforeach
         </tbody>
     </table>
 </body>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Institutional_Data;
 use App\Models\Program;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +19,8 @@ class ProgramController extends Controller
 
     public function create()
     {
-        return view('create_program.create');
+        $users = User::all();
+        return view('create_program.create', compact('users'));
     }
 
     public function store(Request $request)
@@ -27,7 +29,7 @@ class ProgramController extends Controller
 
         $program->name = $request->name;
         $program->description = $request->description;
-        $program->user_id = Auth::user()->id;
+        $program->user_id = $request->user_id;
 
         $program->save();
 
@@ -66,7 +68,8 @@ class ProgramController extends Controller
     public function edit($program)
     {
         $program = Program::find($program);
-        return view('create_program.edit', compact('program'));
+        $users = User::all();
+        return view('create_program.edit', compact('program', 'users'));
     }
 
     public function update(Request $request, $program)
@@ -75,7 +78,7 @@ class ProgramController extends Controller
 
         $program->name = $request->name;
         $program->description = $request->description;
-        $program->user_id = Auth::user()->id;
+        $program->user_id = $request->user_id;
 
         $program->save();
         return redirect()->route('show_program_details', ['program' => $program->id]);

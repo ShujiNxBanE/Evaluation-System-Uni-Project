@@ -18,4 +18,9 @@ class Program extends Model
     {
         return $this->belongsToMany(Category::class, 'category_program');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\EvidenceController;
 use App\Http\Controllers\Institutional_DataController;
+use App\Http\Controllers\ProcessController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\ReportController;
 
@@ -31,6 +32,10 @@ Route::prefix('/portfolio')->middleware('auth:sanctum')->group(function (){
     Route::get('/structure', function(){ return view('portfolio/structure'); })->name('structure');
     Route::get('/ponderation', function(){ return view('portfolio/ponderation'); })->name('ponderation');
     Route::get('/considerations', function () { return view('portfolio/considerations'); })->name('considerations');
+
+    Route::prefix('/process')->group(function (){
+        Route::get('/index', [ProcessController::class, 'index'])->name('process_index');
+    });
 
     Route::middleware('check_permission:create_user, create, show, edit, update, destroy, show_details')->group(function(){
         Route::prefix('/admin')->group(function(){
@@ -133,10 +138,6 @@ Route::prefix('/portfolio')->middleware('auth:sanctum')->group(function (){
 
             Route::delete('/institutional_datas/{institutional_data}', [Institutional_DataController::class, 'destroy'])->name('destroy_institutional_data');
         });
-    });
-
-    Route::prefix('/process')->group(function (){
-        Route::get('/index', function(){ return view('process/index'); })->name('process_index');
     });
 });
 
