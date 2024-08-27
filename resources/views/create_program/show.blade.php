@@ -5,9 +5,13 @@
 <p>Descripcion: {{ $program->description }}</p>
 
 <h3>
-    Nombre de la institucion: {{ $program->institutional_data->name }}
-    <br>
-    Año de creacion: {{ $program->institutional_data->creation_year }}
+    @if (!$program->institutional_data == null)
+        Nombre de la institucion: {{ $program->institutional_data->name }}
+        <br>
+        Año de creacion: {{ $program->institutional_data->creation_year }}
+    @else
+            Aun no hay datos institucionales
+    @endif
 </h3>
 
 <h3>

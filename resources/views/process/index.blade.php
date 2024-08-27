@@ -27,11 +27,9 @@
         </thead>
         <tbody class="table-hover">
         @foreach ($programs as $program)
-        <tr>
-            <td class="text-left"
-            onclick="window.location.href='{{ url('/app/process/datosInstitucionales') }}'">{{ $program->name}}</td>
-            <td class="text-left"
-            onclick="window.location.href='{{ url('/app/process/datosInstitucionales') }}'">Evaluaciones realizadas: 1 / 9</td>
+        <tr onclick="window.location.href='{{ route('process_program', ['program' => $program->id]) }}'">
+            <td class="text-left">{{ $program->name}}</td>
+            <td class="text-left">Evaluaciones realizadas: 1 / 9</td>
         </tr>
         @endforeach
         </tbody>

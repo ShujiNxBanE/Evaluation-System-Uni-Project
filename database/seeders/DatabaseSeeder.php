@@ -18,7 +18,6 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             RolePermissionSeeder::class,
             UserSeeder::class,
-            Institutional_DataSeeder::class,
             ProgramSeeder::class,
             CategoryProgramSeeder::class,
         ]);

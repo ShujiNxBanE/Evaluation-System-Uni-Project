@@ -18,9 +18,10 @@ return new class extends Migration
             $table->integer('creation_year');
             $table->string('institution_character', 25);
             $table->integer('program_edition');
-            $table->string('web_adresss');
+            $table->string('web_address');
             $table->string('postal_address');
             $table->string('recognition_resolution');
+            $table->integer('current_edition');
             $table->date('start_date');
             $table->date('end_date');
             $table->integer('number_of_hours');
