@@ -57,14 +57,4 @@ class EvaluationController extends Controller
         $evaluation->delete();
         return redirect()->route('evaluations');
     }
-
-    public function showByCategory(Category $category)
-    {
-        // Cargar las evaluaciones relacionadas con la categoría
-        $evaluations = $category->evaluations;
-
-        // Pasar los datos a la vista
-        return view('create_category.show', compact('category', 'evaluations'));
-    }
-
 }

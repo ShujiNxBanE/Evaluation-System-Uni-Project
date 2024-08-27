@@ -17,7 +17,7 @@
 <ul>
     @foreach ($program->categories as $category)
         <li>
-            <a href="{{ route('category_evaluations', ['category' => $category->id]) }}">{{ $category->name }}</a>
+            <a>{{ $category->name }}</a>
         </li>
     @endforeach
 </ul>

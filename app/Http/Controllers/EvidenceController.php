@@ -58,11 +58,4 @@ class EvidenceController extends Controller
         $evidence->delete();
         return redirect()->route('evidences');
     }
-
-    public function showByEvaluation(Evaluation $evaluation)
-    {
-        $evidences = $evaluation->evidences;
-
-        return view('create_evidence.index', compact('evaluation', 'evidences'));
-    }
 }

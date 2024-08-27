@@ -11,7 +11,6 @@
     <p>
         Descripcion: {{ $evaluation->description }}
     </p>
-    <a href="{{ route('evaluation_evidences', ['evaluation' => $evaluation->id]) }}">Ver evidencias</a>
 @endforeach
 
 <form action="{{ route('destroy_category', ['category' => $category->id]) }}" method="POST">

@@ -69,9 +69,6 @@ Route::prefix('/portfolio')->middleware('auth:sanctum')->group(function (){
 
             Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('destroy_category');
 
-            Route::get('/categories/{category}/evaluations', [EvaluationController::class, 'showByCategory'])->name('category_evaluations');
-
-
             //Route for evaluations crud
 
             Route::get('/evaluations', [EvaluationController::class, 'index'])->name('evaluations');
@@ -87,8 +84,6 @@ Route::prefix('/portfolio')->middleware('auth:sanctum')->group(function (){
             Route::get('/evaluations/{evaluation}/update', [EvaluationController::class, 'update'])->name('update_evaluation');
 
             Route::delete('/evaluations/{evaluation}', [EvaluationController::class, 'destroy'])->name('destroy_evaluation');
-
-            Route::get('/evaluations/{evaluation}/evidences', [EvidenceController::class, 'showByEvaluation'])->name('evaluation_evidences');
 
             //Route for evidences crud
 
