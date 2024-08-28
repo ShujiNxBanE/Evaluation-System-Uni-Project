@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('file_url');
             $table->boolean('state');
             $table->foreignId('evaluation_id')->constrained()->onDelete('cascade');
+            $table->foreignId('program_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

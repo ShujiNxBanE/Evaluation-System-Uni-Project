@@ -12,7 +12,7 @@
         @php
             $counter++;
         @endphp
-        <a href="">Subir evidencias</a>
+        <a href="{{ route('process_create_evidence', ['program' => $program->id, 'category' => $category, 'evaluation' => $evaluation->id]) }}">Subir evidencias</a>
         <a href="">Realizar reporte</a>
     @endforeach
 </h3>

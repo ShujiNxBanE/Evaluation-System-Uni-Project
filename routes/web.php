@@ -47,6 +47,10 @@ Route::prefix('/portfolio')->middleware('auth:sanctum')->group(function (){
         Route::get('/program/{program}/update_institutional_data', [ProcessController::class, 'update_institutional_data'])->name('process_update_institutional_data');
 
         Route::get('/program/{program}/category/{category}', [ProcessController::class, 'show_category'])->name('process_category');
+
+        Route::get('/program/{program}/category/{category}/evaluation/{evaluation}/create_evidence', [ProcessController::class, 'create_evidence'])->name('process_create_evidence');
+
+        Route::get('program/{program}/category/{category}/evaluation/{evaluation}/evidence', [ProcessController::class, 'store_evidence'])->name('process_create_new_evidence');
     });
 
     Route::middleware('check_permission:create_user, create, show, edit, update, destroy, show_details')->group(function(){

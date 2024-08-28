@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Evaluation;
+use App\Models\Evidence;
 use App\Models\Institutional_Data;
 use App\Models\Program;
 use Illuminate\Http\Request;
@@ -95,6 +96,45 @@ class ProcessController extends Controller
     {
         $evaluations = Evaluation::where('category_id', $category)->get();
         $program = Program::find($program);
-        return view('process.show_category', compact('evaluations', 'program'));
+        return view('process.show_category', compact('evaluations', 'program', 'category'));
+    }
+
+    public function create_evidence($program, $category, $evaluation)
+    {
+        // Verificar que el programa existe
+        $program = Program::findOrFail($program);
+
+        // Verificar que la categoría pertenece al programa
+        $category = $program->categories()->where('id', $category)->firstOrFail();
+
+        // Verificar que la evaluación pertenece a la categoría
+        $evaluation = $category->evaluations()->where('id', $evaluation)->firstOrFail();
+
+        // Filtrar evidencias por program_id
+        $evidences = Evidence::where('evaluation_id', $evaluation->id)
+                            ->where('program_id', $program->id)
+                            ->get();
+
+        return view('process.file_manager' , compact('program', 'category', 'evaluation', 'evidences'));
+    }
+
+    public function store_evidence(Request $request, $program, $category, $evaluation)
+    {
+        $program = Program::findOrFail($program);
+        $category = $program->categories()->where('id', $category)->firstOrFail();
+        $evaluation = $category->evaluations()->where('id', $evaluation)->firstOrFail();
+
+        $evidence = new Evidence();
+        $evidence->description = $request->description;
+        $evidence->file_url = $request->file_url;
+        $evidence->state = 0;
+        $evidence->evaluation_id = $evaluation->id;
+        $evidence->program_id = $program->id;
+        $evidence->created_at = now();
+        $evidence->updated_at = now();
+        $evidence->save();
+
+        return redirect()->route('process_create_evidence',
+            ['program' => $program->id, 'category' => $category->id, 'evaluation' => $evaluation->id]);
     }
 }
