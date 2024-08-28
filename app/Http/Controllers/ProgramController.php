@@ -30,7 +30,8 @@ class ProgramController extends Controller
         $program->name = $request->name;
         $program->description = $request->description;
         $program->user_id = $request->user_id;
-
+        $program->created_at = now();
+        $program->updated_at = now();
         $program->save();
 
         $categories = Category::all();

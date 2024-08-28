@@ -6,6 +6,7 @@ use App\Models\Evaluation;
 use App\Models\Evidence;
 use App\Models\Institutional_Data;
 use App\Models\Program;
+use App\Models\Report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -101,16 +102,12 @@ class ProcessController extends Controller
 
     public function create_evidence($program, $category, $evaluation)
     {
-        // Verificar que el programa existe
         $program = Program::findOrFail($program);
 
-        // Verificar que la categoría pertenece al programa
         $category = $program->categories()->where('id', $category)->firstOrFail();
 
-        // Verificar que la evaluación pertenece a la categoría
         $evaluation = $category->evaluations()->where('id', $evaluation)->firstOrFail();
 
-        // Filtrar evidencias por program_id
         $evidences = Evidence::where('evaluation_id', $evaluation->id)
                             ->where('program_id', $program->id)
                             ->get();
@@ -155,5 +152,49 @@ class ProcessController extends Controller
 
         return redirect()->route('process_create_evidence',
             ['program' => $program->id, 'category' => $category->id, 'evaluation' => $evaluation->id]);
+    }
+
+    public function create_report($program, $category, $evaluation)
+    {
+        $program = Program::findOrFail($program);
+
+        $category = $program->categories()->where('id', $category)->firstOrFail();
+
+        $evaluation = $category->evaluations()->where('id', $evaluation)->firstOrFail();
+
+        $report = $evaluation->report()->first();
+
+        return view('process.indicator_report', compact('program', 'category', 'evaluation', 'report'));
+    }
+
+    public function store_report(Request $request, $program, $category, $evaluation)
+    {
+    $program = Program::findOrFail($program);
+
+    $category = $program->categories()->where('id', $category)->firstOrFail();
+
+    $evaluation = $category->evaluations()->where('id', $evaluation)->firstOrFail();
+
+    $existingReport = $evaluation->report;
+
+    if ($existingReport) {
+        return redirect()->back()->withErrors(['error' => 'Ya existe un reporte para esta evaluación.']);
+    }
+
+        $report = new Report();
+        $report->score = $request->score;
+        $report->comments = $request->comments;
+        $report->suggestions = $request->suggestions;
+        $report->evaluation_id = $evaluation->id;
+        $report->program_id = $program->id;
+        $report->created_at = now();
+        $report->updated_at = now();
+        $report->save();
+
+        return redirect()->route('process_create_report', [
+            'program' => $program->id,
+            'category' => $category->id,
+            'evaluation' => $evaluation->id
+        ]);
     }
 }

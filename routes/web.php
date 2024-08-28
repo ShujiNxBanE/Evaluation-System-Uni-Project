@@ -53,6 +53,10 @@ Route::prefix('/portfolio')->middleware('auth:sanctum')->group(function (){
         Route::get('program/{program}/category/{category}/evaluation/{evaluation}/evidence', [ProcessController::class, 'store_evidence'])->name('process_create_new_evidence');
 
         Route::delete('program/{program}/category/{category}/evaluation/{evaluation}/evidence/{evidence}', [ProcessController::class, 'delete_evidence'])->name('process_delete_evidence');
+
+        Route::get('/program/{program}/category/{category}/evaluation/{evaluation}/create_report', [ProcessController::class, 'create_report'])->name('process_create_report');
+
+        Route::get('program/{program}/category/{category}/evaluation/{evaluation}/report', [ProcessController::class, 'store_report'])->name('process_create_new_report');
     });
 
     Route::middleware('check_permission:create_user, create, show, edit, update, destroy, show_details')->group(function(){
@@ -222,9 +226,3 @@ Route::get('/app/proceso/subirInformeFinal', function(){
 Route::get('/app/proceso/gestorArchivos', function(){
     return view('gestor-archivos');
 });
-
-Route::get('/app/proceso/informeIndicador', function(){
-    return view('informe-indicador');
-});
-
-

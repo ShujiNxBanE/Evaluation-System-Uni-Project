@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('comments')->nullable();
             $table->string('suggestions')->nullable();
             $table->foreignId('evaluation_id')->constrained()->onDelete('cascade');
+            $table->foreignId('program_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

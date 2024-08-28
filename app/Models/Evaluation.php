@@ -18,4 +18,9 @@ class Evaluation extends Model
     {
         return $this->hasMany(Evidence::class);
     }
+
+    public function report()
+    {
+        return $this->hasOne(Report::class);
+    }
 }
