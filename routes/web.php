@@ -57,6 +57,10 @@ Route::prefix('/portfolio')->middleware('auth:sanctum')->group(function (){
         Route::get('/program/{program}/category/{category}/evaluation/{evaluation}/create_report', [ProcessController::class, 'create_report'])->name('process_create_report');
 
         Route::get('program/{program}/category/{category}/evaluation/{evaluation}/report', [ProcessController::class, 'store_report'])->name('process_create_new_report');
+
+        Route::get('program/{program}/category/{category}/evaluation/{evaluation}/report/{report}/edit', [ProcessController::class, 'edit_report'])->name('process_edit_report');
+
+        route::get('program/{program}/category/{category}/evaluation/{evaluation}/report/{report}/update', [ProcessController::class, 'update_report'])->name('process_update_report');
     });
 
     Route::middleware('check_permission:create_user, create, show, edit, update, destroy, show_details')->group(function(){

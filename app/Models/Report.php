@@ -13,4 +13,9 @@ class Report extends Model
     {
         return $this->belongsTo(Evaluation::class);
     }
+
+    public function program()
+    {
+        return $this->belongsTo(Program::class);
+    }
 }

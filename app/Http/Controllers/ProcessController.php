@@ -95,10 +95,17 @@ class ProcessController extends Controller
 
     public function show_category($program, $category)
     {
-        $evaluations = Evaluation::where('category_id', $category)->get();
-        $program = Program::find($program);
-        return view('process.show_category', compact('evaluations', 'program', 'category'));
+        $program = Program::findOrFail($program);
+        $category = $program->categories()->where('id', $category)->firstOrFail();
+        $evaluations = $category->evaluations;
+        $reports = Report::whereIn('evaluation_id', $evaluations->pluck('id'))
+                         ->where('program_id', $program->id)
+                         ->get()
+                         ->keyBy('evaluation_id');
+
+        return view('process.show_category', compact('evaluations', 'program', 'category', 'reports'));
     }
+
 
     public function create_evidence($program, $category, $evaluation)
     {
@@ -157,29 +164,30 @@ class ProcessController extends Controller
     public function create_report($program, $category, $evaluation)
     {
         $program = Program::findOrFail($program);
-
         $category = $program->categories()->where('id', $category)->firstOrFail();
-
         $evaluation = $category->evaluations()->where('id', $evaluation)->firstOrFail();
 
-        $report = $evaluation->report()->first();
+        $report = Report::where('evaluation_id', $evaluation->id)
+                        ->where('program_id', $program->id)
+                        ->first();
 
         return view('process.indicator_report', compact('program', 'category', 'evaluation', 'report'));
     }
 
+
     public function store_report(Request $request, $program, $category, $evaluation)
     {
-    $program = Program::findOrFail($program);
+        $program = Program::findOrFail($program);
+        $category = $program->categories()->where('id', $category)->firstOrFail();
+        $evaluation = $category->evaluations()->where('id', $evaluation)->firstOrFail();
 
-    $category = $program->categories()->where('id', $category)->firstOrFail();
+        $existingReport = Report::where('evaluation_id', $evaluation->id)
+                                ->where('program_id', $program->id)
+                                ->first();
 
-    $evaluation = $category->evaluations()->where('id', $evaluation)->firstOrFail();
-
-    $existingReport = $evaluation->report;
-
-    if ($existingReport) {
-        return redirect()->back()->withErrors(['error' => 'Ya existe un reporte para esta evaluación.']);
-    }
+        if ($existingReport) {
+            return redirect()->back()->withErrors(['error' => 'Ya existe un reporte para esta evaluación.']);
+        }
 
         $report = new Report();
         $report->score = $request->score;
@@ -191,10 +199,47 @@ class ProcessController extends Controller
         $report->updated_at = now();
         $report->save();
 
-        return redirect()->route('process_create_report', [
+        return redirect()->route('process_edit_report', [
             'program' => $program->id,
-            'category' => $category->id,
-            'evaluation' => $evaluation->id
+            'category' => $category,
+            'evaluation' => $evaluation->id,
+            'report' => $report->id
         ]);
     }
+
+
+    public function edit_report(Request $request, $program, $category, $evaluation, $report)
+    {
+        $program = Program::findOrFail($program);
+        $category = $program->categories()->where('id', $category)->firstOrFail();
+        $evaluation = $category->evaluations()->where('id', $evaluation)->firstOrFail();
+        $report = $evaluation->report()->where('id', $report)->firstOrFail();
+
+        return view('process.indicator_report_edit', compact('program', 'category', 'evaluation', 'report'));
+    }
+
+    public function update_report(Request $request, $program, $category, $evaluation, $report)
+    {
+        $program = Program::findOrFail($program);
+        $category = $program->categories()->where('id', $category)->firstOrFail();
+        $evaluation = $category->evaluations()->where('id', $evaluation)->firstOrFail();
+        $report = Report::where('evaluation_id', $evaluation->id)
+                        ->where('program_id', $program->id)
+                        ->where('id', $report)
+                        ->firstOrFail();
+
+        $report->score = $request->score;
+        $report->comments = $request->comments;
+        $report->suggestions = $request->suggestions;
+        $report->updated_at = now();
+        $report->save();
+
+        return redirect()->route('process_edit_report', [
+            'program' => $program->id,
+            'category' => $category,
+            'evaluation' => $evaluation->id,
+            'report' => $report->id
+        ]);
+    }
+
 }
