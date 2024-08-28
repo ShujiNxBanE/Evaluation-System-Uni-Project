@@ -13,7 +13,7 @@
 </h3>
 
 @if ($institutional_data == null)
-    <a href="{{ route('process_create_institutional_data', ['program' => $program->id]) }}">LLenar Datos Institucionales</a>
+    <a href="{{ route('process_create_institutional_data', ['program' => $program->id]) }}">Llenar Datos Institucionales</a>
 @else
     <a href="{{ route('process_edit_institutional_data', ['program' => $program->id]) }}">Modificar Datos Institucionales</a>
 @endif
@@ -25,7 +25,7 @@
 <ul>
     @foreach ($program->categories as $category)
         <li>
-            <a href="">{{ $category->name }}</a>
+            <a href="{{ route('process_category', ['program' => $program->id, 'category' => $category->id]) }}">{{ $category->name }}</a>
         </li>
     @endforeach
 </ul>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Evaluation;
 use App\Models\Institutional_Data;
 use App\Models\Program;
 use Illuminate\Http\Request;
@@ -27,7 +28,7 @@ class ProcessController extends Controller
 
     public function create_institutional_data($program)
     {
-        $program = Program::with('categories')->findOrFail($program);
+        $program = Program::find($program);
         return view('process.create_institutional_data', compact('program'));
     }
 
@@ -88,5 +89,12 @@ class ProcessController extends Controller
         $institutional_data->save();
 
         return redirect()->route('process_program', ['program' => $program->id]);
+    }
+
+    public function show_category($program, $category)
+    {
+        $evaluations = Evaluation::where('category_id', $category)->get();
+        $program = Program::find($program);
+        return view('process.show_category', compact('evaluations', 'program'));
     }
 }

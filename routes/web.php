@@ -45,6 +45,8 @@ Route::prefix('/portfolio')->middleware('auth:sanctum')->group(function (){
         Route::get('/program/{program}/edit_institutional_data', [ProcessController::class, 'edit_institutional_data'])->name('process_edit_institutional_data');
 
         Route::get('/program/{program}/update_institutional_data', [ProcessController::class, 'update_institutional_data'])->name('process_update_institutional_data');
+
+        Route::get('/program/{program}/category/{category}', [ProcessController::class, 'show_category'])->name('process_category');
     });
 
     Route::middleware('check_permission:create_user, create, show, edit, update, destroy, show_details')->group(function(){
