@@ -137,4 +137,23 @@ class ProcessController extends Controller
         return redirect()->route('process_create_evidence',
             ['program' => $program->id, 'category' => $category->id, 'evaluation' => $evaluation->id]);
     }
+
+    public function delete_evidence($program, $category, $evaluation, $evidence)
+    {
+        $program = Program::findOrFail($program);
+
+        $category = $program->categories()->where('id', $category)->firstOrFail();
+
+        $evaluation = $category->evaluations()->where('id', $evaluation)->firstOrFail();
+
+        $evidence = Evidence::where('id', $evidence)
+                            ->where('evaluation_id', $evaluation->id)
+                            ->where('program_id', $program->id)
+                            ->firstOrFail();
+
+        $evidence->delete();
+
+        return redirect()->route('process_create_evidence',
+            ['program' => $program->id, 'category' => $category->id, 'evaluation' => $evaluation->id]);
+    }
 }
