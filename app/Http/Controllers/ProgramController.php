@@ -11,12 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ProgramController extends Controller
 {
-    public function index()
-    {
-        $programs = Program::orderBy('id', 'desc')->get();
-        return view('create_program.index', compact('programs'));
-    }
-
     public function create()
     {
         $users = User::all();

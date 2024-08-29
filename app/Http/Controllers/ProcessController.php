@@ -231,7 +231,7 @@ class ProcessController extends Controller
     }
 
 
-    public function edit_report(Request $request, $program, $category, $evaluation, $report)
+    public function edit_report($program, $category, $evaluation, $report)
     {
         $program = Program::findOrFail($program);
         $category = $program->categories()->where('id', $category)->firstOrFail();

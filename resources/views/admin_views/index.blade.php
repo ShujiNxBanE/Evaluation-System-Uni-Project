@@ -50,7 +50,7 @@
                     <td class="text-left" colspan="2"> {{ $program->name }} </td>
                     <td class="" colspan="2">
                         <button type="button">
-                            <a href="{{ route('show_program_details', ['program' => $program->id])}}">
+                            <a href="{{ route('admin_show_program', ['program' => $program->id])}}">
                                 <img src="{{asset('resources/details.png')}}" alt="details" class="w-12 h-auto">
                             </a>
                         </button>

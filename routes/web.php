@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
@@ -70,7 +71,7 @@ Route::prefix('/portfolio')->middleware('auth:sanctum')->group(function (){
 
             // Route for programs crud
 
-            Route::get('/programs', [ProgramController::class, 'index'])->name('programs');
+            Route::get('/programs', [AdminController::class, 'index'])->name('programs');
 
             Route::get('/programs/create', [ProgramController::class, 'create'])->name('create_programs');
 
@@ -83,6 +84,16 @@ Route::prefix('/portfolio')->middleware('auth:sanctum')->group(function (){
             Route::get('/programs/{program}/update', [ProgramController::class, 'update'])->name('update_program');
 
             Route::delete('/programs/{program}', [ProgramController::class, 'destroy'])->name('destroy_program');
+
+            //New routes for admin
+
+            Route::get('/program/{program}/information', [AdminController::class, 'show'])->name('admin_show_program');
+
+            Route::get('/program/{program}/category/{category}', [AdminController::class, 'show_category'])->name('admin_show_category');
+
+            Route::get('/program/{program}/category/{category}/evaluation/{evaluation}/show_evidences', [AdminController::class, 'show_evidences'])->name('admin_show_evidences');
+
+            Route::get('program/{program}/category/{category}/evaluation/{evaluation}/report/{report}/show', [AdminController::class, 'show_report'])->name('admin_show_report');
 
             //Route for categories crud
 
