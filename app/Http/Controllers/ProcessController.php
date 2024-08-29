@@ -18,6 +18,10 @@ class ProcessController extends Controller
                    ->orderBy('created_at', 'desc')
                    ->get();
 
+        foreach ($programs as $program) {
+            $program->has_institutional_data = Institutional_Data::where('program_id', $program->id)->exists();
+        }
+
         return view('process.index', compact('programs'));
     }
 
@@ -25,6 +29,9 @@ class ProcessController extends Controller
     {
         $program = Program::with('categories')->findOrFail($program);
         $institutional_data = Institutional_Data::where('program_id', $program->id)->first();
+
+        $totalScore = 0;
+        $totalMaxScore = 0;
 
         foreach ($program->categories as $category) {
             $category->total_score = Report::where('program_id', $program->id)
@@ -35,9 +42,13 @@ class ProcessController extends Controller
 
             $numberOfEvaluations = $category->evaluations->count();
             $category->max_score = $numberOfEvaluations * 3;
+
+            $totalScore += $category->total_score;
+
+            $totalMaxScore += $category->max_score;
         }
 
-        return view('process.show', compact('program', 'institutional_data'));
+        return view('process.show', compact('program', 'institutional_data', 'totalScore', 'totalMaxScore'));
     }
 
     public function create_institutional_data($program)

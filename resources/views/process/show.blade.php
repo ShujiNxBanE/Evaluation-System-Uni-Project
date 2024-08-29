@@ -33,4 +33,8 @@
     @endforeach
 </ul>
 
+<h2>Puntajes totales</h2>
+<p>Puntaje Total: {{ $totalScore }}</p>
+<p>Puntaje Máximo: {{ $totalMaxScore }}</p>
+
 <a href="{{ route('process_index')}}">Volver a los programas</a>

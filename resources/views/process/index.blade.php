@@ -26,12 +26,12 @@
             <th class="text-center" colspan="2">Selección del Programa</th>
         </thead>
         <tbody class="table-hover">
-        @foreach ($programs as $program)
-        <tr onclick="window.location.href='{{ route('process_program', ['program' => $program->id]) }}'">
-            <td class="text-left">{{ $program->name}}</td>
-            <td class="text-left">Evaluaciones realizadas: 1 / 9</td>
-        </tr>
-        @endforeach
+            @foreach ($programs as $program)
+            <tr onclick="window.location.href='{{ route('process_program', ['program' => $program->id]) }}'">
+                <td class="text-left">{{ $program->name}}</td>
+                <td class="text-left">{{ $program->has_institutional_data ? 'Revisado' : 'No Revisado' }}</td>
+            </tr>
+            @endforeach
         </tbody>
     </table>
 </body>
