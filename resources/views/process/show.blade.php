@@ -25,7 +25,10 @@
 <ul>
     @foreach ($program->categories as $category)
         <li>
-            <a href="{{ route('process_category', ['program' => $program->id, 'category' => $category->id]) }}">{{ $category->name }}</a>
+            <a href="{{ route('process_category', ['program' => $program->id, 'category' => $category->id]) }}">
+                {{ $category->name }}
+            </a>
+            | Puntaje total: {{ $category->total_score }} / {{ $category->max_score }}
         </li>
     @endforeach
 </ul>

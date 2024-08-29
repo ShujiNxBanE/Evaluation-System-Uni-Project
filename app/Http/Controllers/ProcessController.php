@@ -25,6 +25,18 @@ class ProcessController extends Controller
     {
         $program = Program::with('categories')->findOrFail($program);
         $institutional_data = Institutional_Data::where('program_id', $program->id)->first();
+
+        foreach ($program->categories as $category) {
+            $category->total_score = Report::where('program_id', $program->id)
+                                            ->whereHas('evaluation', function ($query) use ($category) {
+                                                $query->where('category_id', $category->id);
+                                            })
+                                            ->sum('score');
+
+            $numberOfEvaluations = $category->evaluations->count();
+            $category->max_score = $numberOfEvaluations * 3;
+        }
+
         return view('process.show', compact('program', 'institutional_data'));
     }
 
