@@ -6,10 +6,10 @@
     @method('GET')
     @csrf
     <label for="">Nombre del programa: </label>
-    <input type="text" value="{{ $program->name }}" name="name">
+    <input type="text" value="{{ $program->name }}" name="name" maxlength="255">
     <br>
     <label for="">Descripcion del programa: </label>
-    <textarea name="description" cols="30" rows="4"> {{ $program->description }} </textarea>
+    <textarea name="description" cols="30" rows="4" maxlength="255"> {{ $program->description }} </textarea>
     <br>
     <label for="">Seleccione al usuario que desee asignarle el programa</label>
         <br>

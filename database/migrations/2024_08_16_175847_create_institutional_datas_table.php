@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('institutional_datas', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 100);
-            $table->string('country', 50);
-            $table->integer('creation_year');
-            $table->string('institution_character', 25);
+            $table->string('name');
+            $table->string('country');
+            $table->integer('creation_year', 4);
+            $table->string('institution_character');
             $table->integer('program_edition');
             $table->string('web_address');
             $table->string('postal_address');

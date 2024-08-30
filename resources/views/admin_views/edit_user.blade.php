@@ -3,11 +3,11 @@
     @method('GET')
     @csrf
     <label>Nombre del usuario:</label>
-    <input type="text" name="name" value="{{ $user->name }}"> <br>
+    <input type="text" name="name" value="{{ $user->name }}" maxlength="255"> <br>
     <label>Email del usuario:</label>
-    <input type="text" name="email" value="{{ $user->email }}"> <br>
+    <input type="text" name="email" value="{{ $user->email }}" maxlength="255"> <br>
     <label>Contraseña del usuario:</label>
-    <input type="text" name="password" placeholder="Nueva contraseña" required> <br>
+    <input type="text" name="password" placeholder="Nueva contraseña" required maxlength="255"> <br>
 
     <button type="submit">Actualizar</button>
 </form>

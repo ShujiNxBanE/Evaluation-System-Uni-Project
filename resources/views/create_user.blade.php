@@ -17,23 +17,23 @@
         <p class="message">Signup now and get full access to our app. </p>
             <div class="flex">
             <label>
-                <input required="" placeholder="" type="text" class="input" name="firstName">
+                <input required="" placeholder="" type="text" class="input" name="firstName" maxlength="128">
                 <span>Firstname</span>
             </label>
 
             <label>
-                <input required="" placeholder="" type="text" class="input" name="lastName">
+                <input required="" placeholder="" type="text" class="input" name="lastName" maxlength="127">
                 <span>Lastname</span>
             </label>
         </div>
 
         <label>
-            <input required="" placeholder="" type="email" class="input" name="email">
+            <input required="" placeholder="" type="email" class="input" name="email" maxlength="255">
             <span>Email</span>
         </label>
 
         <label>
-            <input required="" placeholder="" type="password" class="input" name="password">
+            <input required="" placeholder="" type="password" class="input" name="password" maxlength="255">
             <span>Password</span>
         </label>
         <label>
