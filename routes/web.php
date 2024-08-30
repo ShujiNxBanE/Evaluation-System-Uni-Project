@@ -36,6 +36,12 @@ Route::prefix('/portfolio')->middleware('auth:sanctum')->group(function (){
 
         Route::get('/program/{program}/information', [ProcessController::class, 'show'])->name('process_program');
 
+        Route::get('/program/{program}/send_final_report', [ProcessController::class, 'upload_final_report'])->name('process_upload_final_report');
+
+        Route::get('/program/{program}/save_final_report', [ProcessController::class, 'store_final_report'])->name('process_store_final_report');
+
+        Route::get('/program/{program}/destroy_final_report', [ProcessController::class, 'destroy_final_report'])->name('process_destroy_final_report');
+
         Route::get('/program/{program}/institutional_data/create', [ProcessController::class, 'create_institutional_data'])->name('process_create_institutional_data');
 
         Route::get('/program/{program}/create_new_institutional_data', [ProcessController::class, 'store_institutional_data'])->name('process_create_new_institutional_data');
@@ -83,6 +89,8 @@ Route::prefix('/portfolio')->middleware('auth:sanctum')->group(function (){
             //New routes for admin
 
             Route::get('/program/{program}/information', [AdminController::class, 'show'])->name('admin_show_program');
+
+            Route::get('/program/{program}/show_final_report', [AdminController::class, 'show_final_report'])->name('admin_show_final_report');
 
             Route::get('/program/{program}/category/{category}', [AdminController::class, 'show_category'])->name('admin_show_category');
 

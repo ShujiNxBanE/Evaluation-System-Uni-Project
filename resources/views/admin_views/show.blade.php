@@ -64,5 +64,10 @@
         @endforeach
     </tbody>
 </table>
+@if ($program->final_report_path == null)
+    <span>Aun no hay informe final</span>
+@else
+    <a href="{{ route('admin_show_final_report', ['program' => $program->id]) }}">Ver informe final</a>
+@endif
 
 <a href="{{ route('programs')}}">Volver a los programas</a>

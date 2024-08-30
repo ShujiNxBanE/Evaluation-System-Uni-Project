@@ -287,4 +287,26 @@ class ProcessController extends Controller
         ]);
     }
 
+    public function upload_final_report($program)
+    {
+        $program = Program::find($program);
+        return view('process.upload_final_report', compact('program'));
+    }
+
+    public function store_final_report(Request $request, $program)
+    {
+        $program = Program::find($program);
+        $program->final_report_path = $request->final_report_path;
+        $program->save();
+
+        return redirect()->route('process_upload_final_report', ['program' => $program->id]);
+    }
+
+    public function destroy_final_report($program)
+    {
+        $program = Program::find($program);
+        $program->final_report_path = null;
+        $program->save();
+        return redirect()->route('process_upload_final_report', ['program' => $program->id]);
+    }
 }

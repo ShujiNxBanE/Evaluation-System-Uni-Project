@@ -102,4 +102,10 @@ class AdminController extends Controller
 
         return view('admin_views.indicator_report', compact('program', 'category', 'evaluation', 'report'));
     }
+
+    public function show_final_report($program)
+    {
+        $program = Program::find($program);
+        return view('admin_views.show_final_report', compact('program'));
+    }
 }

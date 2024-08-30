@@ -1,5 +1,6 @@
 <x-proceso-layout>
     <div class="container">
+        <a href="{{ route('admin_show_program', ['program' => $program->id]) }}" class="text-xl">Atras</a>
         <h2 class="text-center text-2xl mb-3">
             INFORME FINAL
         </h2>
@@ -24,7 +25,9 @@
                     </td>
                     <td colspan="1">
                         <div class="flex justify-center">
-                            <button class="border-2 border-gray-700 p-2 bg-gray-300 rounded-md text-black">Subir Informe</button>
+                            <input type="text" name="final_report_path" value="{{ $program->final_report_path }}">
+                            <button class="border-2 border-gray-700 p-2 bg-gray-300 rounded-md text-black ml-2"
+                                type="submit">Descargar informe final</button>
                         </div>
                     </td>
                 </tr>

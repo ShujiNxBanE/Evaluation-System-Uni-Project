@@ -71,4 +71,6 @@
     </tbody>
 </table>
 
+<a href="{{ route('process_upload_final_report', ['program' => $program->id] ) }}">Subir informe final</a>
+
 <a href="{{ route('process_index')}}">Volver a los programas</a>
