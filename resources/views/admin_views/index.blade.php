@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="{{ asset('css/table.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
+    <x-script_confirmDelete />
 </head>
 <body>
 
@@ -61,7 +62,7 @@
                                 <img src="{{asset('resources/edit.png')}}" alt="edit" class="w-12 h-auto">
                             </a>
                         </button>
-                        <form action="{{ route('destroy_program', ['program' => $program->id]) }}" method="POST">
+                        <form action="{{ route('destroy_program', ['program' => $program->id]) }}" method="POST" onsubmit="confirmDeletion(event, name = 'este programa')">
                             @method('DELETE')
                             @csrf
                             <button type="submit">

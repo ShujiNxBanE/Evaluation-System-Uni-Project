@@ -1,4 +1,5 @@
 <x-proceso-layout>
+    <x-script_confirmDelete />
     <div class="container">
         <a href="{{ route('process_program', ['program' => $program->id]) }}" class="text-xl">Atras</a>
         <h2 class="text-center text-2xl mb-3">
@@ -36,7 +37,8 @@
                             </div>
                         @else
                             <div class="flex justify-center">
-                                <form action="{{ route('process_destroy_final_report', ['program' => $program->id]) }}">
+                                <form action="{{ route('process_destroy_final_report', ['program' => $program->id]) }}"
+                                    onsubmit="confirmDeletion(event, name = 'el informe final')">
                                     @method('GET')
                                     @csrf
                                     <input type="text" name="final_report_path" value="{{ $program->final_report_path }}">

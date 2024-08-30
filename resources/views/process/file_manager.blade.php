@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="{{ asset('css/gestor-archivos.css')}}">
     <script src="https://cdn.tailwindcss.com"></script>
+    <x-script_confirmDelete />
 </head>
 <body>
     <header class="gestor text-center text-2xl">
@@ -74,7 +75,8 @@
                                     ['program' => $program->id,
                                     'category' => $category->id,
                                     'evaluation' => $evaluation->id,
-                                    'evidence' => $evidence->id]) }}" method="POST">
+                                    'evidence' => $evidence->id]) }}" method="POST"
+                                    onsubmit="confirmDeletion(event, name = 'esta evidencia')">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit">

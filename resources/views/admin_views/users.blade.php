@@ -1,3 +1,4 @@
+<x-script_confirmDelete />
 <ul>
     @foreach ($users as $user)
     <hr>
@@ -7,7 +8,8 @@
             <span>Email del usuario: {{ $user->email }}</span> <br>
             <span>Fecha de creación del usuario: {{ $user->created_at }}</span> <br>
             <a href="{{ route('admin_edit_user', ['user' => $user->id]) }}">Editar Usuario</a>
-            <form action="{{ route('admin_destroy_user', ['user' => $user->id]) }}" method="POST">
+            <form action="{{ route('admin_destroy_user', ['user' => $user->id]) }}" method="POST"
+                onsubmit="confirmDeletion(event, name = 'este usuario')">
                 @method('DELETE')
                 @csrf
                 <button type="submit">Eliminar Usuario</button>
