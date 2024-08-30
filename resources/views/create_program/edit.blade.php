@@ -24,3 +24,5 @@
         </select>
     <button type="submit">Actualizar</button>
 </form>
+
+<a href="{{ route('programs') }}">Atras</a>

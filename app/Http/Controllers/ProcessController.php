@@ -27,11 +27,12 @@ class ProcessController extends Controller
 
     public function show($program)
     {
-        $program = Program::with('categories')->findOrFail($program);
+        $program = Program::with('categories.evaluations')->findOrFail($program);
         $institutional_data = Institutional_Data::where('program_id', $program->id)->first();
 
         $totalScore = 0;
         $totalMaxScore = 0;
+        $totalEvaluations = 0;
 
         foreach ($program->categories as $category) {
             $category->total_score = Report::where('program_id', $program->id)
@@ -40,15 +41,37 @@ class ProcessController extends Controller
                                             })
                                             ->sum('score');
 
-            $numberOfEvaluations = $category->evaluations->count();
-            $category->max_score = $numberOfEvaluations * 3;
+            $category->number_of_evaluations = $category->evaluations->count();
+            $category->max_score = $category->number_of_evaluations * 3;
 
             $totalScore += $category->total_score;
-
             $totalMaxScore += $category->max_score;
+
+            $totalEvaluations += $category->number_of_evaluations;
         }
 
-        return view('process.show', compact('program', 'institutional_data', 'totalScore', 'totalMaxScore'));
+        $intervals = [100, 90, 80, 70, 60, 0];
+        $intervalScores = [];
+        foreach ($intervals as $percentage) {
+            $intervalScores[] = ($percentage / 100) * $totalMaxScore;
+        }
+
+        rsort($intervalScores);
+
+        $evaluationCategories = [
+            'Puntuación totalmente satisfactoria',
+            'Ejemplar (o muy satisfactoria)',
+            'Aceptable (satisfactoria, se recomiendan mejoras moderadas)',
+            'Marginal (Poco satisfactoria, se necesitan mejoras considerables en múltiples áreas)',
+            'Inadecuado (No satisfactorio, muchas áreas a lo largo del programa necesitan mejoras considerables)',
+            'Inaceptable (nada satisfecho)',
+        ];
+
+        return view('process.show', compact(
+                    'program', 'institutional_data',
+                    'totalScore', 'totalMaxScore',
+                    'totalEvaluations', 'intervalScores',
+                    'evaluationCategories'));
     }
 
     public function create_institutional_data($program)

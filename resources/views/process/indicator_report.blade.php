@@ -40,7 +40,8 @@
                                 <label class="flex items-center">
                                     <input type="radio" name="score" value="0" class="mr-2"
                                     {{ isset($report) && $report->score === 0 ? 'checked' : '' }}/>
-                                    No observado [0]
+                                    No observado [0] <br>
+                                    El administrador no observa ningún indicador de la norma de calidad evaluada.
                                 </label>
                             </td>
                         </tr>
@@ -49,7 +50,8 @@
                                 <label class="flex items-center">
                                     <input type="radio" name="score" value="1" class="mr-2"
                                     {{ isset($report) && $report->score === 1 ? 'checked' : '' }}/>
-                                    Escasamente observado [1]
+                                    Escasamente observado [1] <br>
+                                    El administrador ha identificado una mínima presencia de la norma de calidad evaluada. Esta área todavía necesita muchas mejoras.
                                 </label>
                             </td>
                         </tr>
@@ -58,7 +60,8 @@
                                 <label class="flex items-center">
                                     <input type="radio" name="score" value="2" class="mr-2"
                                     {{ isset($report) && $report->score === 2 ? 'checked' : '' }}/>
-                                    Implementación moderada [2]
+                                    Implementación moderada [2] <br>
+                                    El administrador ha identificado una implementación moderada de la norma de calidad. Esta área todavía necesita ciertas mejoras.
                                 </label>
                             </td>
                         </tr>
@@ -67,7 +70,8 @@
                                 <label class="flex items-center">
                                     <input type="radio" name="score" value="3" class="mr-2"
                                     {{ isset($report) && $report->score === 3 ? 'checked' : '' }}/>
-                                    Cumple satisfactoriamente con el criterio [3]
+                                    Cumple satisfactoriamente con el criterio [3] <br>
+                                    El administrador ha determinado que la norma de calidad se está implementando satisfactoriamente y no hay necesidad de mejora en esta área.
                                 </label>
                             </td>
                         </tr>

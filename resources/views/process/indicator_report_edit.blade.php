@@ -34,12 +34,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach([0 => 'No observado', 1 => 'Escasamente observado', 2 => 'Implementación moderada', 3 => 'Cumple satisfactoriamente con el criterio'] as $value => $label)
+                        @foreach([0 => 'No observado <br> El administrador no observa ningún indicador de la norma de calidad evaluada.',
+                                    1 => 'Escasamente observado <br> El administrador ha identificado una mínima presencia de la norma de calidad evaluada. Esta área todavía necesita muchas mejoras.',
+                                    2 => 'Implementación moderada <br> El administrador ha identificado una implementación moderada de la norma de calidad. Esta área todavía necesita ciertas mejoras.',
+                                    3 => 'Cumple satisfactoriamente con el criterio <br> El administrador ha determinado que la norma de calidad se está implementando satisfactoriamente y no hay necesidad de mejora en esta área.'] as $value => $label)
                         <tr>
                             <td class="border border-zinc-300 p-2">
                                 <label class="flex items-center">
                                     <input type="radio" name="score" value="{{ $value }}" class="mr-2" {{ $report->score == $value ? 'checked' : '' }} />
-                                    {{ $label }} [{{ $value }}]
+                                    [{{ $value }}] {!! $label !!}
                                 </label>
                             </td>
                         </tr>
