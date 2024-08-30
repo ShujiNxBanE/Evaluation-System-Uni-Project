@@ -230,7 +230,6 @@ class ProcessController extends Controller
         ]);
     }
 
-
     public function edit_report($program, $category, $evaluation, $report)
     {
         $program = Program::findOrFail($program);

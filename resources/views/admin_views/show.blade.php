@@ -12,13 +12,6 @@
     @endif
 </h3>
 
-@if ($institutional_data == null)
-    <a href="{{ route('process_create_institutional_data', ['program' => $program->id]) }}">Llenar Datos Institucionales</a>
-@else
-    <a href="{{ route('process_edit_institutional_data', ['program' => $program->id]) }}">Modificar Datos Institucionales</a>
-@endif
-
-
 <h3>
     Categorias del programa
 </h3>
@@ -29,7 +22,7 @@
                 {{ $category->name }}
             </a>
             | Puntaje total: {{ $category->total_score }} / {{ $category->max_score }}
-        </li>
+        </li>   
     @endforeach
 </ul>
 

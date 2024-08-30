@@ -11,9 +11,9 @@
         @php
             $counter++;
         @endphp
-        <a href="{{ route('admin_show_evidences', ['program' => $program->id, 'category' => $category->id, 'evaluation' => $evaluation->id]) }}">Subir evidencias</a>
+        <a href="{{ route('admin_show_evidences', ['program' => $program->id, 'category' => $category->id, 'evaluation' => $evaluation->id]) }}">Ver evidencias</a>
         @if (isset($reports[$evaluation->id]))
-            <a href="{{ route('admin_show_report', ['program' => $program->id, 'category' => $category->id, 'evaluation' => $evaluation->id, 'report' => $reports[$evaluation->id]->id]) }}">Modificar reporte</a>
+            <a href="{{ route('admin_show_report', ['program' => $program->id, 'category' => $category->id, 'evaluation' => $evaluation->id, 'report' => $reports[$evaluation->id]->id]) }}">Ver reporte</a>
         @else
             <span>Aun no hay reporte</span>
         @endif

@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Models\Institutional_Data;
 use App\Models\Program;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ProgramController extends Controller
 {
@@ -34,12 +32,6 @@ class ProgramController extends Controller
         return redirect()->route('programs');
     }
 
-    public function show($program)
-    {
-        $program = Program::with('institutional_data', 'categories')->findOrFail($program);
-        return view('create_program.show', compact('program'));
-    }
-
     public function edit($program)
     {
         $program = Program::find($program);
@@ -56,7 +48,7 @@ class ProgramController extends Controller
         $program->user_id = $request->user_id;
 
         $program->save();
-        return redirect()->route('show_program_details', ['program' => $program->id]);
+        return redirect()->route('programs');
     }
 
     public function destroy($program)
