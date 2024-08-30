@@ -10,6 +10,7 @@
 </head>
 <body>
     <form class="form" action="{{route('createUser')}}">
+        <a href="{{ route('programs')}}">Volver a los programas</a>
         @method('GET')
         @csrf
         <p class="title">Register </p>

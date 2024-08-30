@@ -19,14 +19,25 @@
     <div class="table-title">
         <h3 class="text-center ">Lista de programas</h3>
         <button class="border-2 border-black rounded-xl p-1 bg-gray-300">
-            <a href="{{ route('create_programs')}}">Nuevo Programa</a>
+            <a href="{{ route('create_programs')}}">Crear Programa</a>
         </button>
+
+        <button class="border-2 border-black rounded-xl p-1 bg-gray-300">
+            <a href="{{ route('create_user')}}">Crear Usuario</a>
+        </button>
+
+        <button class="border-2 border-black rounded-xl p-1 bg-gray-300">
+            <a href="{{ route('admin_show_users')}}">Usuarios</a>
+        </button>
+
         <button class="border-2 border-black rounded-xl p-1 bg-gray-300">
             <a href="{{ route('categories')}}">Categorias</a>
         </button>
+
         <button class="border-2 border-black rounded-xl p-1 bg-gray-300">
             <a href="{{ route('evaluations')}}">Indicadores</a>
         </button>
+
     </div>
 
     <table class="table-fill">

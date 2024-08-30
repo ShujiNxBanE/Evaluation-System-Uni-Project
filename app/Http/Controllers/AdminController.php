@@ -6,6 +6,8 @@ use App\Models\Evidence;
 use App\Models\Institutional_Data;
 use App\Models\Program;
 use App\Models\Report;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -107,5 +109,43 @@ class AdminController extends Controller
     {
         $program = Program::find($program);
         return view('admin_views.show_final_report', compact('program'));
+    }
+
+    public function show_users()
+    {
+        $users = User::orderBy('id', 'desc')->get();
+        return view('admin_views.users', compact('users'));
+    }
+
+    public function edit_user($user)
+    {
+        $user = User::find($user);
+        return view('admin_views.edit_user', compact('user'));
+    }
+
+    public function store_user(Request $request, $user)
+    {
+        $user = User::find($user);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->updated_at = now();
+        $user->save();
+
+        return redirect()->route('admin_show_users');
+    }
+
+    public function destroy_user($user)
+    {
+        $user = User::findOrFail($user);
+
+        $programs = Program::where('user_id', $user->id)->get();
+
+        foreach ($programs as $program) {
+            $program->user_id = 1;
+            $program->save();
+        }
+        $user->delete();
+        return redirect()->route('admin_show_users');
     }
 }

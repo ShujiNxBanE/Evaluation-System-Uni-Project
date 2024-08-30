@@ -72,6 +72,14 @@ Route::prefix('/portfolio')->middleware('auth:sanctum')->group(function (){
 
             Route::get('/create_user', function(){return view('create_user');})->name('create_user');
 
+            Route::get('/users', [AdminController::class, 'show_users'])->name('admin_show_users');
+
+            Route::get('/users/{user}/edit', [AdminController::class, 'edit_user'])->name('admin_edit_user');
+
+            Route::get('/users/{user}/store', [AdminController::class, 'store_user'])->name('admin_store_user');
+
+            Route::delete('/users/{user}/destroy', [AdminController::class, 'destroy_user'])->name('admin_destroy_user');
+
             // Route for programs crud
 
             Route::get('/programs', [AdminController::class, 'index'])->name('programs');

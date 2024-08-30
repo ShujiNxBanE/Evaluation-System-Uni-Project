@@ -19,7 +19,7 @@ class AuthController extends Controller
 
         $user->save();
 
-        return redirect()->route('login');
+        return redirect()->route('create_user');
     }
 
     function login(Request $request)
