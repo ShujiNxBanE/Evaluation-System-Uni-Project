@@ -37,7 +37,7 @@
                     <tr>
                         <td class="border border-zinc-300 p-2">
                             <label class="flex items-center">
-                                <input type="radio" name="score" value="{{ $value }}" class="mr-2" {{ $report->score == $value ? 'checked' : '' }} />
+                                <input type="radio" name="score" value="{{ $value }}" class="mr-2" {{ $report->score == $value ? 'checked' : '' }} disabled />
                                 [{{ $value }}] {!! $label !!}
                             </label>
                         </td>
@@ -48,12 +48,12 @@
 
             <div class="mt-4 text-base">
                 <label for="comments" class="block mb-2">Comentarios:</label>
-                <textarea id="comments" name="comments" rows="4" class="w-full border border-zinc-300 p-2 text-black">{{ $report->comments }}</textarea>
+                <textarea id="comments" name="comments" rows="4" class="w-full border border-zinc-300 p-2 text-black" readonly>{{ $report->comments }}</textarea>
             </div>
 
             <div class="mt-4 text-base">
                 <label for="suggestions" class="block mb-2">Sugerencias:</label>
-                <textarea id="suggestions" name="suggestions" rows="4" class="w-full border border-zinc-300 p-2 text-black">{{ $report->suggestions }}</textarea>
+                <textarea id="suggestions" name="suggestions" rows="4" class="w-full border border-zinc-300 p-2 text-black" readonly>{{ $report->suggestions }}</textarea>
             </div>
         </div>
     </div>

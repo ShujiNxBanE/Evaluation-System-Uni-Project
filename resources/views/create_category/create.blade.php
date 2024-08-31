@@ -4,10 +4,10 @@
     @method('GET')
     @csrf
     <label> Nombre: </label>
-    <input type="text" name="name">
+    <input type="text" name="name" maxlength="255">
     <br>
     <label> Descripcion </label>
-    <input type="text" name="description">
+    <input type="text" name="description" maxlength="255">
     <br>
     <button type="submit">Crear</button>
 </form>

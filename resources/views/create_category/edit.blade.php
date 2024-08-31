@@ -4,10 +4,10 @@
     @method('GET')
     @csrf
     <label> Nombre: </label>
-    <input type="text" name="name" value="{{$category->name}}">
+    <input type="text" name="name" value="{{$category->name}}" maxlength="255">
     <br>
     <label> Descripcion </label>
-    <input type="text" name="description" value="{{$category->description}}">
+    <input type="text" name="description" value="{{$category->description}}" maxlength="255">
     <br>
     <button type="submit">Actualizar</button>
 </form>

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('country');
-            $table->integer('creation_year', 4);
+            $table->integer('creation_year');
             $table->string('institution_character');
             $table->integer('program_edition');
             $table->string('web_address');

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('evidences', function (Blueprint $table) {
             $table->id();
-            $table->string('description')->nullable();
+            $table->string('description', 500)->nullable();
             $table->string('file_url');
             $table->boolean('state');
             $table->foreignId('evaluation_id')->constrained()->onDelete('cascade');

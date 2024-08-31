@@ -33,7 +33,6 @@
                         <th colspan="1">Estado</th>
                         <th colspan="3">Descripción</th>
                         <th colspan="1">Descargar</th>
-                        <th colspan="1">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,19 +46,6 @@
                             </td>
                             <td colspan="1">
                                 <h1>{{ $evidence->file_url }}</h1>
-                            </td>
-                            <td colspan="1">
-                                <form action="{{ route('process_delete_evidence',
-                                    ['program' => $program->id,
-                                    'category' => $category->id,
-                                    'evaluation' => $evaluation->id,
-                                    'evidence' => $evidence->id]) }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit">
-                                        Eliminar
-                                    </button>
-                                </form>
                             </td>
                         </tr>
                     @endforeach

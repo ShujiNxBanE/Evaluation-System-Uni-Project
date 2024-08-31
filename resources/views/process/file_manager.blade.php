@@ -33,7 +33,7 @@
                 <table class="m-auto">
                     <td>
                         <h1 class="text-center text-black">Descripción</h1>
-                        <textarea name="description" id="" cols="60" rows="5" class="text-black pl-1 pr-1" ></textarea>
+                        <textarea name="description" id="" cols="60" rows="5" class="text-black pl-1 pr-1" maxlength="500"></textarea>
                     </td>
                     <td>
                         <input type="text" name="file_url" id="" class="ml-10 text-black">

@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
             $table->integer('score');
-            $table->string('comments')->nullable();
-            $table->string('suggestions')->nullable();
+            $table->string('comments', 500)->nullable();
+            $table->string('suggestions', 500)->nullable();
             $table->foreignId('evaluation_id')->constrained()->onDelete('cascade');
             $table->foreignId('program_id')->constrained()->onDelete('cascade');
             $table->timestamps();

@@ -6,7 +6,7 @@
     @csrf
 
     <label>Description:</label>
-    <textarea name="description" id="" cols="30" rows="4"> {{ $evaluation->description }}</textarea>
+    <textarea name="description" id="" cols="30" rows="4" maxlength="1000"> {{ $evaluation->description }}</textarea>
     <button type="submit">
         Actualizar
     </button>

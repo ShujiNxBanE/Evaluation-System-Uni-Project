@@ -5,7 +5,7 @@
     @csrf
 
     <label>Description:</label>
-    <textarea name="description" cols="30" rows="4"></textarea>
+    <textarea name="description" cols="30" rows="4" maxlength="1000"></textarea>
     <br>
     <select name="category_id" class="form-control" required>
 

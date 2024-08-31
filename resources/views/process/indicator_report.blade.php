@@ -81,13 +81,13 @@
                 <div class="mt-4 text-base">
                     <label for="comments" class="block mb-2">Comentarios:</label>
                     <textarea id="comments" name="comments" rows="4" class="w-full border border-zinc-300 p-2 text-black"
-                    placeholder="Escribe tus comentarios aquí...">{{ isset($report) ? $report->comments : '' }}</textarea>
+                    placeholder="Escribe tus comentarios aquí..." maxlength="500">{{ isset($report) ? $report->comments : '' }}</textarea>
                 </div>
 
                 <div class="mt-4 text-base">
                     <label for="suggestions" class="block mb-2">Sugerencias:</label>
                     <textarea id="suggestions" name="suggestions" rows="4" class="w-full border border-zinc-300 p-2 text-black"
-                    placeholder="Escribe tus sugerencias aquí...">{{ isset($report) ? $report->suggestions : '' }}</textarea>
+                    placeholder="Escribe tus sugerencias aquí..." maxlength="500">{{ isset($report) ? $report->suggestions : '' }}</textarea>
                 </div>
             </div>
 
