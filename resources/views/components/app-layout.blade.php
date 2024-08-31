@@ -28,10 +28,7 @@
             @endif
         </li>
           <li>
-            <form id="logout-form" action="{{ route('logoutUser') }}" method="POST">
-                @csrf
-                <button type="submit">Logout</button>
-            </form>
+            <x-user_logout />
           </li>
         </ul>
     </header>

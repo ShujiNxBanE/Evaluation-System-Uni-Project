@@ -11,11 +11,14 @@
 </head>
 <body>
 
+
     <button onclick="window.location.href='{{ route('portfolio_index') }}'"
-    class=" border-gray-500 p-2 mt-2 ml-2 rounded-lg bg-black shadow-xl text-white"
+    class="border-gray-500 p-2 mt-2 ml-2 rounded-lg bg-black shadow-xl text-white"
     >
     Atras
     </button>
+
+    <x-user_logout />
 
     <div class="table-title">
         <h3 class="text-center ">Lista de programas</h3>

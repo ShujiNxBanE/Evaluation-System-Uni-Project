@@ -16,6 +16,8 @@
     Atras
     </button>
 
+    <x-user_logout />
+
     <div class="table-title">
         <h3 class="text-center ">Lista de tus programas</h3>
         <p class="text-center text-white ">Estimado evaluador, a continuación seleccione el programa a evaluar.</p>

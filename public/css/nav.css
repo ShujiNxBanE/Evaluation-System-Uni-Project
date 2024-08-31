@@ -58,7 +58,7 @@ html, body {
     clear: both;
     max-height: 0;
     transition: max-height .2s ease-out;
-    font-size: 1em;
+    font-size: 0.9em;
   }
 
   /* menu icon */
@@ -107,7 +107,7 @@ html, body {
   }
 
   .header .menu-btn:checked ~ .menu {
-    max-height: 240px;
+    max-height: 450px;
   }
 
   .header .menu-btn:checked ~ .menu-icon .navicon {
