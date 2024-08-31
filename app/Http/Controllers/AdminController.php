@@ -113,7 +113,7 @@ class AdminController extends Controller
 
     public function show_users()
     {
-        $users = User::orderBy('id', 'desc')->get();
+        $users = User::where('id', '!=', 1)->orderBy('id', 'desc')->get();
         return view('admin_views.users', compact('users'));
     }
 
@@ -123,7 +123,7 @@ class AdminController extends Controller
         return view('admin_views.edit_user', compact('user'));
     }
 
-    public function store_user(Request $request, $user)
+    public function update_user(Request $request, $user)
     {
         $user = User::find($user);
         $user->name = $request->name;

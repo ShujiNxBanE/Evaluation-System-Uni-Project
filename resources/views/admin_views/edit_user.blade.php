@@ -1,5 +1,5 @@
 <h3>Actualizando usuario</h3>
-<form action="{{ route('admin_store_user', ['user' => $user->id]) }}">
+<form action="{{ route('admin_update_user', ['user' => $user->id]) }}">
     @method('GET')
     @csrf
     <label>Nombre del usuario:</label>
