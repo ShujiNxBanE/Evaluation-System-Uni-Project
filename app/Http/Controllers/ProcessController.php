@@ -9,6 +9,7 @@ use App\Models\Program;
 use App\Models\Report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\PdfToText\Pdf;
 
 class ProcessController extends Controller
 {
@@ -170,13 +171,22 @@ class ProcessController extends Controller
 
     public function store_evidence(Request $request, $program, $category, $evaluation)
     {
+        $request->validate([
+            'file_url' => 'required|mimes:pdf|max:20480', // 20480 KB = 20 MB
+        ]);
+
         $program = Program::findOrFail($program);
         $category = $program->categories()->where('id', $category)->firstOrFail();
         $evaluation = $category->evaluations()->where('id', $evaluation)->firstOrFail();
 
+        $filePath = $request->file('file_url')->store('', 'local');
+
+        $pdfPath = storage_path('app/evidences/' . $filePath);
+        $pdfPath = str_replace('\\', '/', $pdfPath);
+
         $evidence = new Evidence();
         $evidence->description = $request->description;
-        $evidence->file_url = $request->file_url;
+        $evidence->file_url = $filePath;
         $evidence->state = 0;
         $evidence->evaluation_id = $evaluation->id;
         $evidence->program_id = $program->id;

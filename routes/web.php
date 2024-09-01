@@ -65,7 +65,7 @@ Route::prefix('/portfolio')->middleware('auth:sanctum')->group(function (){
         Route::get('/program/{program}/category/{category}/evaluation/{evaluation}/create_evidence', [ProcessController::class, 'create_evidence'])
                 ->middleware('check_permission:create_evidence')->name('process_create_evidence');
 
-        Route::get('program/{program}/category/{category}/evaluation/{evaluation}/evidence', [ProcessController::class, 'store_evidence'])
+        Route::post('program/{program}/category/{category}/evaluation/{evaluation}/evidence', [ProcessController::class, 'store_evidence'])
                 ->middleware('check_permission:store_evidence')->name('process_create_new_evidence');
 
         Route::delete('program/{program}/category/{category}/evaluation/{evaluation}/evidence/{evidence}', [ProcessController::class, 'delete_evidence'])

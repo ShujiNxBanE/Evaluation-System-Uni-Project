@@ -27,16 +27,26 @@
             Registrar Archivos
         </header>
         <div class="p-4 bg-blue-700 text-justify text-md">
-            <form action="{{ route('process_create_new_evidence', ['program' => $program->id, 'category' => $category->id, 'evaluation' => $evaluation->id]) }}">
-                @method('GET')
+                @if ($errors->any())
+                    <div class="alert alert-danger text-base text-center">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            <form action="{{ route('process_create_new_evidence', ['program' => $program->id, 'category' => $category->id, 'evaluation' => $evaluation->id]) }}"
+                enctype="multipart/form-data" method="POST">
                 @csrf
+                @method('POST')
                 <table class="m-auto">
                     <td>
                         <h1 class="text-center text-black">Descripción</h1>
                         <textarea name="description" id="" cols="60" rows="5" class="text-black pl-1 pr-1" maxlength="500"></textarea>
                     </td>
                     <td>
-                        <input type="text" name="file_url" id="" class="ml-10 text-black">
+                        <input type="file" name="file_url" class="ml-10 text-black">
                     </td>
                     <td>
                         <button type="submit" class="border-gray-900 border-2 bg-gray-300 p-1 text-sm rounded-md text-black">Subir</button>
