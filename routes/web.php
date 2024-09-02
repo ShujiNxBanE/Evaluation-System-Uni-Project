@@ -41,7 +41,7 @@ Route::prefix('/portfolio')->middleware('auth:sanctum')->group(function (){
         Route::get('/program/{program}/send_final_report', [ProcessController::class, 'upload_final_report'])
                 ->middleware('check_permission:create_final_report')->name('process_upload_final_report');
 
-        Route::get('/program/{program}/save_final_report', [ProcessController::class, 'store_final_report'])
+        Route::post('/program/{program}/save_final_report', [ProcessController::class, 'store_final_report'])
                 ->middleware('check_permission:store_final_report')->name('process_store_final_report');
 
         Route::get('/program/{program}/destroy_final_report', [ProcessController::class, 'destroy_final_report'])

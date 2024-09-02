@@ -27,10 +27,10 @@
                     <td colspan="1">
                         @if ($program->final_report_path == null)
                             <div class="flex justify-center">
-                                <form action="{{ route('process_store_final_report', ['program' => $program->id]) }}">
-                                    @method('GET')
+                                <form action="{{ route('process_store_final_report', ['program' => $program->id]) }}" enctype="multipart/form-data" method="POST">
+                                    @method('POST')
                                     @csrf
-                                    <input type="text" name="final_report_path">
+                                    <input type="file" name="final_report_path" required>
                                     <button class="border-2 border-gray-700 p-2 bg-gray-300 rounded-md text-black ml-2"
                                         type="submit">Subir Informe</button>
                                 </form>

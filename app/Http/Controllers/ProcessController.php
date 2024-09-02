@@ -9,6 +9,7 @@ use App\Models\Program;
 use App\Models\Report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Spatie\PdfToText\Pdf;
 
 class ProcessController extends Controller
@@ -211,6 +212,11 @@ class ProcessController extends Controller
                             ->where('program_id', $program->id)
                             ->firstOrFail();
 
+        if($evidence->file_url)
+        {
+            Storage::disk('local')->delete($evidence->file_url);
+        }
+
         $evidence->delete();
 
         return redirect()->route('process_create_evidence',
@@ -305,8 +311,17 @@ class ProcessController extends Controller
 
     public function store_final_report(Request $request, $program)
     {
+        $request->validate([
+            'final_report_path' => 'required|mimes:pdf|max:20480', // 20480 KB = 20 MB
+        ]);
+
+        $filePath = $request->file('final_report_path')->store('', 'reports');
+
+        $pdfPath = storage_path('app/reports/' . $filePath);
+        $pdfPath = str_replace('\\', '/', $pdfPath);
+
         $program = Program::find($program);
-        $program->final_report_path = $request->final_report_path;
+        $program->final_report_path = $filePath;
         $program->save();
 
         return redirect()->route('process_upload_final_report', ['program' => $program->id]);
@@ -315,7 +330,11 @@ class ProcessController extends Controller
     public function destroy_final_report($program)
     {
         $program = Program::find($program);
-        $program->final_report_path = null;
+        if($program->final_report_path)
+        {
+            Storage::disk('reports')->delete($program->final_report_path);
+            $program->final_report_path = null;
+        }
         $program->save();
         return redirect()->route('process_upload_final_report', ['program' => $program->id]);
     }

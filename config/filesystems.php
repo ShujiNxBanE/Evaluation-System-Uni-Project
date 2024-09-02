@@ -34,7 +34,14 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/evidences'),
             'url' => env('APP_URL').'/storage/evidences',
-            'throw' => false, 
+            'throw' => false,
+        ],
+
+        'reports' => [
+        'driver' => 'local',
+        'root' => storage_path('app/reports'),
+        'url' => env('APP_URL').'/storage/reports',
+        'throw' => false,
         ],
 
         'public' => [
