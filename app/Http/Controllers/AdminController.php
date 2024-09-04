@@ -89,8 +89,9 @@ class AdminController extends Controller
         $evaluation = $category->evaluations()->where('id', $evaluation)->firstOrFail();
 
         $evidences = Evidence::where('evaluation_id', $evaluation->id)
-                            ->where('program_id', $program->id)
-                            ->get();
+            ->where('program_id', $program->id)
+            ->orderBy('created_at', 'desc') // Ordenar por fecha de creación en orden descendente
+            ->paginate(4);
 
         return view('admin_views.file_manager' , compact('program', 'category', 'evaluation', 'evidences'));
     }
