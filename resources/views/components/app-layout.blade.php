@@ -78,7 +78,7 @@
     <!-- Footer -->
     <footer class="bg-gray-800 text-gray-100 p-4 mt-3">
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-center text-sm">
-            <span>&copy; 2024 Mi Sitio Web</span>
+            <span>&copy; 2024 Potafolio Electrónico</span>
             <div class="flex space-x-4 mt-2 md:mt-0">
                 <a href="#" class="hover:text-green-300">Política de Privacidad</a>
                 <a href="#" class="hover:text-green-300">Términos de Servicio</a>
