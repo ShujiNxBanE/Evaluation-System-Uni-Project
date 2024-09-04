@@ -4,51 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Portafolio Electrónico</title>
+    <link rel="icon" href="{{ asset('portafolio.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ asset('styles.css')}}">
+
 </head>
-<body>
-    <header class="header shadow-xl text-2xl text-white fond-extrabold rounded-xl m-5 p-3">
-        <img src="https://www.caled-ead.org/tarjeta-puntuacion/imagenes/logo_caled.gif" alt="CALED" class="w-16 h-auto ml-12">
-        <p>Instituto Latinoamericano y del Caribe de Calidad en Educacion Superior a Distancia</p>
+<body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="bg-gray-800 text-gray-100 p-4 shadow-md">
+        <div class="container mx-auto flex items-center justify-between">
+            <img src="https://www.caled-ead.org/tarjeta-puntuacion/imagenes/logo_caled.gif" alt="CALED" class="w-16 h-auto">
+            <p class="text-xl font-semibold">Instituto Latinoamericano y del Caribe de Calidad en Educación Superior a Distancia</p>
+        </div>
     </header>
-        <div class="wrapper">
-            <div class="sct brand">
-                <h3>Portafolio Electrónico</h3>
-            </div>
-            <div class="sct login">
-                <form action="{{route('loginUser')}}">
-                    @method('GET')
-                    @csrf
-                    <h3>Member Login</h3>
-                    <input type="email" name="email" placeholder="Email">
-                    <input type="password" name="password" placeholder="Password">
-                    <div class="forgot-remember">
-                            <label class="control control-checkbox">
-                                    Remember me
-                                        <input type="checkbox" />
-                                    <div class="control_indicator"></div>
-                                </label>
-                        <div class="forgot">
-                                <a href="#">Forgot Password?</a>
-                        </div>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center">
+        <div class="w-full max-w-md bg-gray-800 p-8 rounded-lg shadow-lg">
+            <h3 class="text-2xl font-bold mb-6 text-center text-gray-100">Bienvenido!</h3>
+
+            <form action="{{ route('loginUser') }}" method="GET">
+                @csrf
+                @if($errors->has('login_error'))
+                    <div class="mb-4 bg-red-900 text-red-300 p-3 rounded-md">
+                        {{ $errors->first('login_error') }}
                     </div>
-                    <input type="submit" name="send" value="Send">
-                    <p class="text-center">Sign up with<br><i class="fa fa-hand-o-down" aria-hidden="true"></i></p>
-                    <div class="social-sign">
-                        <a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
-                        <a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
-                        <a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
-                    </div>
-                </form>
-            </div> <!--end login-->
-        </div> <!--end wrapper-->
-    <footer class="text-sm text-white rounded-tl-xl rounded-tr-xl m-5 p-3">
+                @endif
+
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Email" class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-100" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="password" class="block text-sm font-medium text-gray-300">Contraseña</label>
+                    <input type="password" name="password" id="password" placeholder="Contraseña" class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-100" required>
+                </div>
+
+                <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    Enviar
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-100 text-center p-4 mt-5">
         <p>CALED</p>
-        <P>Contacto: info_caled@utpl.edu.ec</P>
-        <P>Telefono: 593 - 73701444, ext: 2238</P>
-        <P>2016</P>
+        <p>Contacto: info_caled@utpl.edu.ec</p>
+        <p>Teléfono: 593 - 73701444, ext: 2238</p>
+        <p>&copy; 2016</p>
     </footer>
 </body>
 </html>

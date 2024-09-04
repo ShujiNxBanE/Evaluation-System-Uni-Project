@@ -26,7 +26,9 @@ class AuthController extends Controller
     {
         if(!Auth::attempt(['email' => $request->email, 'password' => $request->password]))
         {
-            return redirect()->route('login');
+            return redirect()->route('login')->withErrors([
+                'login_error' => 'Las credenciales proporcionadas no son correctas.',
+            ]);;
         }
 
         \auth()->user()->tokens()->delete();
