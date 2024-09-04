@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title', 'Portafolio Electrónico | Tarjeta de Puntuación')</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="{{ asset('portafolio.png') }}" type="image/png">
     {{-- <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> --}}
 </head>
 <body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen">
@@ -30,7 +31,6 @@
                         Iniciar Proceso
                     </a>
                     @endif
-                </a>
                 <!-- Nombre del Usuario -->
                 <span class="text-gray-300 mx-4 text-sm hidden md:block">Hola, {{ Auth::user()->name }}</span>
                 <!-- Botón de cierre de sesión -->
