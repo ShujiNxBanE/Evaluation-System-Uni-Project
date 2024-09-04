@@ -4,48 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <title>Document</title>
-    <link rel="stylesheet" href="{{ asset('css/nav.css')}}">
+    <title>@yield('title', 'Portafolio Electrónico | Tarjeta de Puntuación')</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    {{-- <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> --}}
 </head>
-<body class="flex flex-col min-h-screen">
+<body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen">
 
-    <header class="header">
-        <a href="{{ route('portfolio_index') }}" class="logo">Portafolio Electr&oacute;nico | Tarjeta de puntuaci&oacute;n</a>
-        <input class="menu-btn" type="checkbox" id="menu-btn" />
-        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
-        <ul class="menu">
-          <li><a href="{{ route('portfolio_index') }}">Garantia</a></li>
-          <li><a href="{{ route('structure') }}">Estructura</a></li>
-          <li><a href="{{ route('ponderation') }}">Ponderacion</a></li>
-          <li><a href="{{ route('considerations') }}">Consideraciones</a></li>
-          <li>
-            @if(Auth::user()->role_id == 1)
-                <a href="{{ route('programs') }}">Ver Programas</a>
-            @else
-                <a href="{{ route('process_index') }}">Iniciar Proceso</a>
-            @endif
-        </li>
-          <li>
-            <x-user_logout />
-          </li>
-        </ul>
+    <!-- Header -->
+    <header class="bg-gray-800 text-gray-100 p-4 shadow-md relative">
+        <div class="container mx-auto flex flex-wrap items-center justify-between">
+            <a href="{{ route('portfolio_index') }}" class="text-lg font-semibold hover:text-green-300 mb-2 md:mb-0">
+                Tarjeta de Puntuación
+            </a>
+            <nav class="hidden md:flex items-center space-x-4 flex-wrap">
+                <a href="{{ route('portfolio_index') }}" class="px-4 py-2 rounded bg-green-700 hover:bg-green-800 text-white font-medium transition duration-200">Garantía</a>
+                <a href="{{ route('structure') }}" class="px-4 py-2 rounded bg-green-700 hover:bg-green-800 text-white font-medium transition duration-200">Estructura</a>
+                <a href="{{ route('ponderation') }}" class="px-4 py-2 rounded bg-green-700 hover:bg-green-800 text-white font-medium transition duration-200">Ponderación</a>
+                <a href="{{ route('considerations') }}" class="px-4 py-2 rounded bg-green-700 hover:bg-green-800 text-white font-medium transition duration-200">Consideraciones</a>
+                    @if(Auth::user()->role_id == 1)
+                    <a href="{{ route('programs') }}" class="px-4 py-2 rounded bg-green-700 hover:bg-green-800 text-white font-medium transition duration-200">
+                        Ver Programas
+                    </a>
+                    @else
+                    <a href="{{ route('process_index') }}" class="px-4 py-2 rounded bg-green-700 hover:bg-green-800 text-white font-medium transition duration-200">
+                        Iniciar Proceso
+                    </a>
+                    @endif
+                </a>
+                <!-- Nombre del Usuario -->
+                <span class="text-gray-300 mx-4 text-sm hidden md:block">Hola, {{ Auth::user()->name }}</span>
+                <!-- Botón de cierre de sesión -->
+                <form id="logout-form" action="{{ route('logoutUser') }}" method="POST" class="flex-shrink-0">
+                    @csrf
+                    <button type="submit" class="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-md transition duration-200 text-sm">
+                        Cerrar Sesión
+                    </button>
+                </form>
+            </nav>
+            <!-- Botón del menú para dispositivos móviles -->
+            <button class="md:hidden text-white focus:outline-none" id="menu-button">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Menú desplegable para móviles -->
+        <nav class="md:hidden mt-4 space-y-2 hidden" id="mobile-menu">
+            <a href="{{ route('portfolio_index') }}" class="block px-4 py-2 rounded bg-green-700 hover:bg-green-800 text-white font-medium transition duration-200">Garantía</a>
+            <a href="{{ route('structure') }}" class="block px-4 py-2 rounded bg-green-700 hover:bg-green-800 text-white font-medium transition duration-200">Estructura</a>
+            <a href="{{ route('ponderation') }}" class="block px-4 py-2 rounded bg-green-700 hover:bg-green-800 text-white font-medium transition duration-200">Ponderación</a>
+            <a href="{{ route('considerations') }}" class="block px-4 py-2 rounded bg-green-700 hover:bg-green-800 text-white font-medium transition duration-200">Consideraciones</a>
+            <a href="{{ route('programs') }}" class="block px-4 py-2 rounded bg-green-700 hover:bg-green-800 text-white font-medium transition duration-200">
+                @if(Auth::user()->role_id == 1)
+                    Ver Programas
+                @else
+                    Iniciar Proceso
+                @endif
+            </a>
+            <form id="logout-form" action="{{ route('logoutUser') }}" method="POST" class="mt-2">
+                @csrf
+                <button type="submit" class="block w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-md transition duration-200 text-sm">
+                    Cerrar Sesión
+                </button>
+            </form>
+        </nav>
     </header>
 
-    <main class="main-content flex-grow">
-
+    <!-- Main Content -->
+    <main class="flex-grow p-6">
         {{ $slot }}
-
     </main>
 
-    <footer class="bg-white mt-3">
-        <div class="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center text-sm">
-          <span class="text-gray-600">&copy; 2024 Mi Sitio Web</span>
-          <span class="text-gray-600">Política de Privacidad</span>
-          <span class="text-gray-600">Términos de Servicio</span>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-100 p-4 mt-3">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center text-sm">
+            <span>&copy; 2024 Mi Sitio Web</span>
+            <div class="flex space-x-4 mt-2 md:mt-0">
+                <a href="#" class="hover:text-green-300">Política de Privacidad</a>
+                <a href="#" class="hover:text-green-300">Términos de Servicio</a>
+            </div>
         </div>
     </footer>
 
+    <script>
+        document.getElementById('menu-button').addEventListener('click', function () {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>

@@ -13,7 +13,7 @@
     <!-- Header -->
     <header class="bg-gray-800 text-gray-100 p-4 shadow-md">
         <div class="container mx-auto flex items-center justify-between">
-            <img src="https://www.caled-ead.org/tarjeta-puntuacion/imagenes/logo_caled.gif" alt="CALED" class="w-16 h-auto">
+            <img src="{{ asset('resources/logo_caled.gif') }}" alt="CALED" class="w-16 h-auto">
             <p class="text-xl font-semibold">Instituto Latinoamericano y del Caribe de Calidad en Educación Superior a Distancia</p>
         </div>
     </header>
