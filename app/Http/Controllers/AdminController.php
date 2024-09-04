@@ -14,6 +14,9 @@ class AdminController extends Controller
     public function index()
     {
         $programs = Program::orderBy('id', 'desc')->get();
+        foreach ($programs as $program) {
+            $program->has_institutional_data = Institutional_Data::where('program_id', $program->id)->exists();
+        }
         return view('admin_views.index', compact('programs'));
     }
 
