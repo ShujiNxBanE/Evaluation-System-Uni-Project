@@ -179,10 +179,18 @@ class ProcessController extends Controller
         $category = $program->categories()->where('id', $category)->firstOrFail();
         $evaluation = $category->evaluations()->where('id', $evaluation)->firstOrFail();
 
-        $filePath = $request->file('file_url')->store('', 'local');
+            // Obtener el archivo
+        $file = $request->file('file_url');
+        $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME); // Obtener el nombre sin extensión
+        $extension = $file->getClientOriginalExtension(); // Obtener la extensión del archivo
+        $userId = Auth::id(); // Obtener el ID del usuario autenticado
+        $timestamp = now()->timestamp; // Obtener el timestamp actual
 
-        // $pdfPath = storage_path('app/evidences/' . $filePath);
-        // $pdfPath = str_replace('\\', '/', $pdfPath);
+        // Crear un nombre único para el archivo
+        $fileName = "{$originalName}_{$userId}_{$timestamp}.{$extension}";
+
+        // Guardar el archivo en el disco local con el nombre modificado
+        $filePath = $file->storeAs('', $fileName, 'local');
 
         $evidence = new Evidence();
         $evidence->description = $request->description;
@@ -314,10 +322,18 @@ class ProcessController extends Controller
             'final_report_path' => 'required|mimes:pdf|max:20480', // 20480 KB = 20 MB
         ]);
 
-        $filePath = $request->file('final_report_path')->store('', 'reports');
+            // Obtener el archivo
+        $file = $request->file('final_report_path');
+        $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME); // Obtener el nombre sin extensión
+        $extension = $file->getClientOriginalExtension(); // Obtener la extensión del archivo
+        $userId = Auth::id(); // Obtener el ID del usuario autenticado
+        $timestamp = now()->timestamp; // Obtener el timestamp actual
 
-        $pdfPath = storage_path('app/reports/' . $filePath);
-        $pdfPath = str_replace('\\', '/', $pdfPath);
+        // Crear un nombre único para el archivo
+        $fileName = "{$originalName}_{$userId}_{$timestamp}.{$extension}";
+
+        // Guardar el archivo en el disco 'reports' con el nombre modificado
+        $filePath = $file->storeAs('', $fileName, 'reports');
 
         $program = Program::find($program);
         $program->final_report_path = $filePath;

@@ -104,7 +104,7 @@
                         <tr class="border-b border-blue-800">
                             <td class="px-4 py-2">{{ $evidence->description }}</td>
                             <td class="px-4 py-2 flex flex-col sm:flex-row gap-2">
-                                <a href="{{ route('download', ['filename' => basename($evidence->file_url)]) }}" class="text-blue-300 hover:text-blue-100" download>Descargar</a>
+                                <a href="{{ route('download', ['filename' => $evidence->file_url]) }}" class="text-blue-300 hover:text-blue-100">Descargar</a>
                                 <form action="{{ route('process_delete_evidence', ['program' => $program->id, 'category' => $category->id, 'evaluation' => $evaluation->id, 'evidence' => $evidence->id]) }}" method="POST"
                                     onsubmit="confirmDeletion(event, name = 'esta evidencia')">
                                     @method('DELETE')

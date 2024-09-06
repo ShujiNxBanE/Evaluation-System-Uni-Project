@@ -33,7 +33,11 @@
                             <td class="py-2 px-4 bg-gray-800 text-white">
                                 <div class="flex justify-center items-center space-x-2">
                                     <input type="text" name="final_report_path" value="{{ $program->final_report_path }}" class="bg-gray-700 text-white p-2 rounded-md w-full md:w-auto">
-                                    <button class="border-2 border-gray-700 p-2 bg-gray-600 rounded-md text-white" type="submit">Descargar informe final</button>
+                                    <button class="border-2 border-gray-700 p-2 bg-gray-600 rounded-md text-white" type="submit">
+                                        <a href="{{ route('downloadFinalReport', ['filename' => $program->final_report_path]) }}">
+                                            Descargar informe final
+                                        </a>
+                                    </button>
                                 </div>
                             </td>
                         </tr>

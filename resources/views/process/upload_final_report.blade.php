@@ -47,7 +47,7 @@
                                         @csrf
                                         @method('GET')
                                         <input type="text" name="final_report_path" value="{{ $program->final_report_path }}" class="bg-gray-700 text-white p-2 rounded mb-2 w-full">
-                                        <a href="{{ $program->final_report_path }}" class="text-blue-400 underline mb-2 w-full text-center">Descargar informe final</a>
+                                        <a href="{{ route('downloadFinalReport', ['filename' => $program->final_report_path]) }}" class="text-blue-400 underline mb-2 w-full text-center">Descargar informe final</a>
                                         <button class="border-2 border-gray-700 p-2 bg-gray-600 rounded-md text-white w-full" type="submit">Eliminar informe final</button>
                                     </form>
                                 </div>

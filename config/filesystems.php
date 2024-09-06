@@ -38,10 +38,10 @@ return [
         ],
 
         'reports' => [
-        'driver' => 'local',
-        'root' => storage_path('app/reports'),
-        'url' => env('APP_URL').'/storage/reports',
-        'throw' => false,
+            'driver' => 'local',
+            'root' => storage_path('app/reports'),
+            'url' => env('APP_URL').'/storage/reports',
+            'throw' => false,
         ],
 
         'public' => [

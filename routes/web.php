@@ -36,6 +36,8 @@ Route::prefix('/portfolio')->middleware('auth:sanctum')->group(function (){
 
         Route::get('download/{filename}', [FileController::class, 'download'])->name('download');
 
+        Route::get('downloadFinalReport/{filename}', [FileController::class, 'downloadFinalReport'])->name('downloadFinalReport');
+
         Route::get('/programs', [ProcessController::class, 'index'])
                 ->middleware('check_permission:show_programs')->name('process_index');
 

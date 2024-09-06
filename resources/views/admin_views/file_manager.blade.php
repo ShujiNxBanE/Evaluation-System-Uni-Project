@@ -63,7 +63,7 @@
                 <thead>
                     <tr class="bg-blue-800 text-white">
                         <th class="px-4 py-2">Descripción</th>
-                        <th class="px-4 py-2">Descargar</th>
+                        <th class="px-4 py-2">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -71,7 +71,7 @@
                         <tr class="border-b border-blue-700">
                             <td class="px-4 py-2">{{ $evidence->description }}</td>
                             <td class="px-4 py-2">
-                                <a href="{{ asset('storage/evidences/' . $evidence->file_url) }}" class="text-blue-300 hover:text-blue-100" download>Descargar</a>
+                                <a href="{{ route('download', ['filename' => $evidence->file_url]) }}" class="text-blue-300 hover:text-blue-100" download>Descargar</a>
                             </td>
                         </tr>
                     @endforeach
