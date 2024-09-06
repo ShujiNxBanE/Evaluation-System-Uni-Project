@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title', 'Portafolio Electrónico | Tarjeta de Puntuación')</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{{ asset('css/tailwindCss.js') }}"></script>
     <link rel="icon" href="{{ asset('portafolio.png') }}" type="image/png">
-    {{-- <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> --}}
 </head>
 <body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen">
 

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Portafolio Electrónico</title>
     <link rel="icon" href="{{ asset('portafolio.png') }}" type="image/png">
-    <link rel="stylesheet" href="{{ asset('styles.css')}}">
+    <script src="{{ asset('css/tailwindCss.js') }}"></script>
 
 </head>
 <body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen">

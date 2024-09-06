@@ -3,8 +3,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
-        "build:css": "npx postcss public/css/styles.css -o public/styles.css"
+        "build": "vite build"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.20",

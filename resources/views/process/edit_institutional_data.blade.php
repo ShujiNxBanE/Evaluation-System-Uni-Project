@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Formulario de Datos Institucionales</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{{ asset('css/tailwindCss.js') }}"></script>
     <link rel="icon" href="{{ asset('portafolio.png') }}" type="image/png">
 </head>
 <body class="bg-gray-900 text-gray-100">

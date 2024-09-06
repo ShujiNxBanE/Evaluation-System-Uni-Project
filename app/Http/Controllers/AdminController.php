@@ -13,7 +13,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $programs = Program::orderBy('id', 'desc')->get();
+        $programs = Program::orderBy('id', 'desc')->paginate(10);
         foreach ($programs as $program) {
             $program->has_institutional_data = Institutional_Data::where('program_id', $program->id)->exists();
         }
@@ -117,7 +117,9 @@ class AdminController extends Controller
 
     public function show_users()
     {
-        $users = User::where('id', '!=', 1)->orderBy('id', 'desc')->get();
+        $users = User::where('id', '!=', 1)
+            ->orderBy('id', 'desc')
+            ->paginate(5);
         return view('admin_views.users', compact('users'));
     }
 

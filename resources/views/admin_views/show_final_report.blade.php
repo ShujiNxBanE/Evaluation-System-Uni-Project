@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Informe Final</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{{ asset('css/tailwindCss.js') }}"></script>
     <link rel="icon" href="{{ asset('portafolio.png') }}" type="image/png">
     <x-script_confirmDelete />
 </head>

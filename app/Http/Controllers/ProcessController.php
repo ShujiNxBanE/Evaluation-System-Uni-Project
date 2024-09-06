@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Evaluation;
 use App\Models\Evidence;
 use App\Models\Institutional_Data;
 use App\Models\Program;
@@ -10,7 +9,6 @@ use App\Models\Report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Spatie\PdfToText\Pdf;
 
 class ProcessController extends Controller
 {
@@ -18,7 +16,7 @@ class ProcessController extends Controller
     {
         $programs = Program::where('user_id', Auth::user()->id)
                    ->orderBy('created_at', 'desc')
-                   ->get();
+                   ->paginate(10);
 
         foreach ($programs as $program) {
             $program->has_institutional_data = Institutional_Data::where('program_id', $program->id)->exists();
@@ -183,8 +181,8 @@ class ProcessController extends Controller
 
         $filePath = $request->file('file_url')->store('', 'local');
 
-        $pdfPath = storage_path('app/evidences/' . $filePath);
-        $pdfPath = str_replace('\\', '/', $pdfPath);
+        // $pdfPath = storage_path('app/evidences/' . $filePath);
+        // $pdfPath = str_replace('\\', '/', $pdfPath);
 
         $evidence = new Evidence();
         $evidence->description = $request->description;

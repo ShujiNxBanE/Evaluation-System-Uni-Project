@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Gestor de Archivos</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{{ asset('css/tailwindCss.js') }}"></script>
     <link rel="icon" href="{{ asset('portafolio.png') }}" type="image/png">
 </head>
 <body class="bg-gray-900 text-gray-100">
@@ -62,7 +62,6 @@
             <table class="table-auto w-full text-left border-collapse">
                 <thead>
                     <tr class="bg-blue-800 text-white">
-                        <th class="px-4 py-2">Estado</th>
                         <th class="px-4 py-2">Descripción</th>
                         <th class="px-4 py-2">Descargar</th>
                     </tr>
@@ -70,10 +69,9 @@
                 <tbody>
                     @foreach ($evidences as $evidence)
                         <tr class="border-b border-blue-700">
-                            <td class="px-4 py-2">{{ $evidence->state }}</td>
                             <td class="px-4 py-2">{{ $evidence->description }}</td>
                             <td class="px-4 py-2">
-                                <a href="{{ $evidence->file_url }}" class="text-blue-300 hover:text-blue-100" download>Descargar</a>
+                                <a href="{{ asset('storage/evidences/' . $evidence->file_url) }}" class="text-blue-300 hover:text-blue-100" download>Descargar</a>
                             </td>
                         </tr>
                     @endforeach

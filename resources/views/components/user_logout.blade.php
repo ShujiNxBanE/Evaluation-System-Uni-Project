@@ -1,4 +1,4 @@
-<div class="fixed top-4 right-4 p-2 bg-gray-800 text-gray-100 rounded-xl shadow-lg flex items-center space-x-2 md:space-x-4 lg:space-x-6">
+<div class="fixed top-4 right-4 p-2 bg-gray-800 text-gray-100 rounded-xl shadow-xl flex items-center space-x-2 md:space-x-4 lg:space-x-6">
     <!-- Contenedor de la Imagen -->
     <div class="w-10 h-10 bg-gray-500 rounded-full flex items-center justify-center border border-gray-700">
         <img src="{{ asset('resources/usuario.png') }}" alt="user" class="w-8 h-8 rounded-full">

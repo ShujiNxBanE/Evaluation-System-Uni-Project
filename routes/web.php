@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\ProcessController;
 use App\Http\Controllers\ProgramController;
 
@@ -32,6 +33,9 @@ Route::prefix('/portfolio')->middleware('auth:sanctum')->group(function (){
     Route::get('/considerations', function () { return view('portfolio/considerations'); })->name('considerations');
 
     Route::prefix('/process')->group(function (){
+
+        Route::get('download/{filename}', [FileController::class, 'download'])->name('download');
+
         Route::get('/programs', [ProcessController::class, 'index'])
                 ->middleware('check_permission:show_programs')->name('process_index');
 

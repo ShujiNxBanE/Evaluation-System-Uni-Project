@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Lista de Programas</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{{ asset('css/tailwindCss.js') }}"></script>
     <link rel="icon" href="{{ asset('portafolio.png') }}" type="image/png">
     <x-script_confirmDelete />
     <style>
@@ -28,7 +28,6 @@
     <!-- Table Title and Action Buttons -->
     <div class="text-center mt-8 mb-6 space-y-2">
         <h3 class="text-xl font-semibold mb-2">Lista de tus programas</h3>
-        <p class="text-gray-400 mb-4">Estimado evaluador, a continuación seleccione el programa a evaluar.</p>
         <div class="flex flex-wrap justify-center gap-2">
             <a href="{{ route('create_programs') }}"
                 class="border-2 border-gray-300 rounded-xl p-2 bg-gray-800 text-white shadow-md hover:bg-gray-700 transition duration-200">
@@ -86,6 +85,10 @@
                     @endforeach
                 </tbody>
             </table>
+
+            <div class="mt-4">
+                {{ $programs->links() }}
+            </div>
         </div>
     </div>
 </body>
