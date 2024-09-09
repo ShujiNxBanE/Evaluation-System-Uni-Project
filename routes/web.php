@@ -195,20 +195,4 @@ Route::prefix('/portfolio')->middleware('auth:sanctum')->group(function (){
     });
 });
 
-Route::get('/app/proceso/estructuraPrograma', function(){
-    return view('process/estructuraPrograma');
-});
-
-Route::get('/app/proceso/informeFinal', function(){
-    return view('process/informeFinal');
-});
-
-Route::get('/app/proceso/puntuacion', function(){
-    return view('process/puntuacion');
-});
-
-Route::get('/app/proceso/subirInformeFinal', function(){
-    return view('process/subirInformeFinal');
-});
-
 

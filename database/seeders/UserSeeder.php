@@ -19,14 +19,8 @@ class UserSeeder extends Seeder
             [
                 'name' => 'admin',
                 'email' => 'admin2024#@portfolio.com',
-                'password' => bcrypt('2024-administrador*'),
+                'password' => bcrypt('2024-administrador**'),
                 'role_id' => 1,
-            ],
-            [
-                'name' => 'testUser',
-                'email' => 'testUser@portfolio.com',
-                'password' => bcrypt('testUser2024'),
-                'role_id' => 2,
             ],
         ]);
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
