@@ -117,6 +117,15 @@
             @endif
         </div>
 
+        <button
+            class="bg-blue-500 text-white px-4 py-2 rounded"
+            onclick="openModal()"
+            >
+            Escala de Valoración
+        </button>
+
+        <x-modal />
+
         <!-- Categorías del Programa -->
         <div id="categories" class="mb-8">
             <h3 class="text-xl sm:text-2xl font-semibold mb-2">Categorías del programa</h3>

@@ -72,7 +72,7 @@
         <!-- Nombre del Programa -->
         <h2 class="text-xl sm:text-2xl font-semibold mb-2">
             Nombre del programa: {{ $program->name }} <br>
-            <span class="text-sm">Evaluador: {{ $evaluator }}</span>
+            <span class="text-xl">Evaluador: {{ $evaluator }}</span>
         </h2>
 
         <!-- Datos Institucionales -->
@@ -109,6 +109,15 @@
             @endif
         </div>
 
+        <button
+            class="bg-blue-500 text-white px-4 py-2 rounded"
+            onclick="openModal()"
+            >
+            Escala de Valoración
+        </button>
+
+        <x-modal />
+
         <!-- Categorías del Programa -->
         <div id="categories" class="mb-4">
             <h3 class="text-lg sm:text-xl font-semibold mb-2">Categorías del programa</h3>
@@ -117,7 +126,7 @@
                     <thead>
                         <tr class="bg-gray-700 text-gray-300">
                             <th class="py-1 px-1 text-left text-xs">Categoría</th>
-                            <th class="py-1 px-1 text-left text-xs">Número de Evaluaciones</th>
+                            <th class="py-1 px-1 text-left text-xs">Número de Indicadores</th>
                             <th class="py-1 px-1 text-left text-xs">Puntaje Total</th>
                             <th class="py-1 px-1 text-left text-xs">Puntaje Máximo</th>
                         </tr>
