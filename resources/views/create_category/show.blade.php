@@ -8,11 +8,11 @@
     <link rel="icon" href="{{ asset('portafolio.png') }}" type="image/png">
     <x-script_confirmDelete />
 </head>
-<body class="bg-gray-800 text-gray-100">
+<body class="bg-gray-100 text-gray-900">
     <div class="container mx-auto px-4 py-6">
         <!-- Barra de navegación con el botón de atrás y el logout -->
         <div class="flex items-center mb-6">
-            <a href="{{ route('categories') }}" class="flex items-center text-gray-300 hover:text-gray-100">
+            <a href="{{ route('categories') }}" class="flex items-center text-gray-700 hover:text-gray-900">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
@@ -22,16 +22,16 @@
         </div>
 
         <h3 class="text-2xl font-bold mb-4">Nombre de la categoría: {{ $category->name }}</h3>
-        <p class="mb-4">Descripción: {{ $category->description }}</p>
+        <p class="mb-4 text-gray-700">Descripción: {{ $category->description }}</p>
 
         <div class="flex space-x-4 mb-6">
-            <a href="{{ route('edit_category', ['category' => $category->id]) }}" class="bg-blue-800 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <a href="{{ route('edit_category', ['category' => $category->id]) }}" class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400">
                 Editar Categoría
             </a>
             <form action="{{ route('destroy_category', ['category' => $category->id]) }}" method="POST" onsubmit="confirmDeletion(event, name = 'esta categoría')">
                 @method('DELETE')
                 @csrf
-                <button type="submit" class="bg-red-800 text-white py-2 px-4 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
+                <button type="submit" class="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-400">
                     Eliminar Categoría
                 </button>
             </form>
@@ -40,9 +40,9 @@
         <h3 class="text-xl font-semibold mb-4">Indicadores</h3>
 
         @foreach ($category->evaluations as $evaluation)
-            <div class="bg-gray-900 p-4 rounded-lg mb-4">
+            <div class="bg-white p-4 rounded-lg shadow-md border border-gray-300 mb-4">
                 <h3 class="text-base font-bold">Número de indicador: {{ $evaluation->id }}</h3>
-                <p>Descripción: {{ $evaluation->description }}</p>
+                <p class="text-gray-700">Descripción: {{ $evaluation->description }}</p>
             </div>
         @endforeach
     </div>

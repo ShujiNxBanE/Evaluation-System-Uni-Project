@@ -7,11 +7,11 @@
     <script src="{{ asset('css/tailwindCss.js') }}"></script>
     <link rel="icon" href="{{ asset('portafolio.png') }}" type="image/png">
 </head>
-<body class="bg-gray-800 text-gray-100">
+<body class="bg-gray-100 text-gray-900">
     <div class="container mx-auto px-4 py-6">
         <!-- Barra de navegación con el botón de atrás y el logout -->
-        <div class="flex items-center mb-6">
-            <a href="{{ route('show_category_details', ['category' => $category->id]) }}" class="flex items-center text-gray-300 hover:text-gray-100">
+        <div class="flex items-center mb-4">
+            <a href="{{ route('show_category_details', ['category' => $category->id]) }}" class="flex items-center text-gray-600 hover:text-gray-900">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
@@ -20,19 +20,19 @@
             <x-user_logout class="ml-auto" />
         </div>
 
-        <h3 class="text-2xl font-bold mb-4">Editar Categoría</h3>
+        <h1 class="text-2xl font-bold mb-6 mt-8">Editar Categoría</h1>
 
-        <form action="{{ route('update_category', ['category' => $category->id]) }}" method="GET" class="bg-gray-900 p-6 rounded-lg shadow-lg">
+        <form action="{{ route('update_category', ['category' => $category->id]) }}" method="GET" class="bg-white p-6 rounded-lg shadow-lg max-w-lg mx-auto">
             @csrf
             <div class="mb-4">
                 <label for="name" class="block text-lg font-medium mb-2">Nombre:</label>
-                <input type="text" id="name" name="name" value="{{ $category->name }}" maxlength="255" class="w-full px-3 py-2 bg-gray-700 text-gray-300 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="name" name="name" value="{{ $category->name }}" maxlength="255" class="w-full px-3 py-2 bg-gray-200 text-gray-900 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
             <div class="mb-4">
                 <label for="description" class="block text-lg font-medium mb-2">Descripción:</label>
-                <input type="text" id="description" name="description" value="{{ $category->description }}" maxlength="255" class="w-full px-3 py-2 bg-gray-700 text-gray-300 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <textarea id="description" name="description" cols="30" rows="4" maxlength="255" class="w-full px-3 py-2 bg-gray-200 text-gray-900 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">{{ $category->description }}</textarea>
             </div>
-            <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Actualizar</button>
+            <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Actualizar</button>
         </form>
     </div>
 </body>
