@@ -61,7 +61,7 @@
 
         <span class="text-gray-900 text-lg sm:text-xl font-semibold">REGISTRO DE EVALUACIÓN</span>
         <!-- Nombre del Programa -->
-        <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4">Programa: {{ $program->name }}</h2>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4">Categoría: {{ $category->name }}</h2>
 
         <!-- Evaluaciones -->
         <div class="bg-gray-100 p-4 rounded-lg shadow-md mb-8">
