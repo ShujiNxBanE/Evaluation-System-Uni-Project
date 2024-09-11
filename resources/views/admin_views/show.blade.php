@@ -124,35 +124,35 @@
             <x-modal />
 
             <div class="overflow-x-auto">
-                <table class="min-w-full bg-white rounded-lg shadow-md divide-y divide-gray-200">
+                <table class="min-w-full bg-white rounded-lg shadow-md divide-y divide-gray-200 border border-gray-300">
                     <thead>
-                        <tr class="bg-gray-100 text-gray-800">
-                            <th class="py-2 px-2 text-left text-xs border-b border-gray-300">Categoría</th>
-                            <th class="py-2 px-2 text-left text-xs border-b border-gray-300">Número de Indicadores</th>
-                            <th class="py-2 px-2 text-left text-xs border-b border-gray-300">Puntaje Total</th>
-                            <th class="py-2 px-2 text-left text-xs border-b border-gray-300">Puntaje Máximo</th>
+                        <tr class="bg-gray-200 text-gray-800 border-b border-gray-300">
+                            <th class="py-2 px-2 text-left text-xs border-r border-gray-300">Categoría</th>
+                            <th class="py-2 px-2 text-left text-xs border-r border-gray-300">Número de Indicadores</th>
+                            <th class="py-2 px-2 text-left text-xs border-r border-gray-300">Puntaje Total</th>
+                            <th class="py-2 px-2 text-left text-xs ">Puntaje Máximo</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-800 text-xs">
+                    <tbody class="text-gray-700 text-xs sm:text-sm">
                         @foreach ($program->categories as $category)
-                        <tr class="hover:bg-gray-100 transition duration-200">
-                            <td class="py-2 px-2 border-b border-gray-200">
+                        <tr class="hover:bg-gray-200 transition duration-200 border-b border-gray-300">
+                            <td class="py-2 px-2 border-r border-gray-300">
                                 <a href="{{ route('admin_show_category', ['program' => $program->id, 'category' => $category->id]) }}"
                                 class="text-blue-500 hover:underline">
                                     {{ $category->name }}
                                 </a>
                             </td>
-                            <td class="py-2 px-2 border-b border-gray-200">{{ $category->number_of_evaluations }}</td>
-                            <td class="py-2 px-2 border-b border-gray-200">{{ $category->total_score }}</td>
-                            <td class="py-2 px-2 border-b border-gray-200">{{ $category->max_score }}</td>
+                            <td class="py-2 px-2 border-r border-gray-300">{{ $category->number_of_evaluations }}</td>
+                            <td class="py-2 px-2 border-r border-gray-300">{{ $category->total_score }}</td>
+                            <td class="py-2 px-2">{{ $category->max_score }}</td>
                         </tr>
                         @endforeach
                         <!-- Fila de Totales -->
                         <tr class="bg-gray-100 text-gray-800 font-semibold">
-                            <td class="py-2 px-2 border-t border-gray-300">Totales</td>
-                            <td class="py-2 px-2 border-t border-gray-300">{{ $totalEvaluations }}</td>
-                            <td class="py-2 px-2 border-t border-gray-300">{{ $totalScore }}</td>
-                            <td class="py-2 px-2 border-t border-gray-300">{{ $totalMaxScore }}</td>
+                            <td class="py-2 px-2 border-r border-gray-300">Totales</td>
+                            <td class="py-2 px-2 border-r border-gray-300">{{ $totalEvaluations }}</td>
+                            <td class="py-2 px-2 border-r border-gray-300">{{ $totalScore }}</td>
+                            <td class="py-2 px-2">{{ $totalMaxScore }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -165,9 +165,9 @@
             <div class="overflow-x-auto">
                 <table class="min-w-full bg-white rounded-lg shadow-md divide-y divide-gray-200">
                     <thead>
-                        <tr class="bg-gray-100 text-gray-800">
-                            <th class="py-2 px-2 text-left text-xs border-b border-gray-300">Cumplimiento Numérico</th>
-                            <th class="py-2 px-2 text-left text-xs border-b border-gray-300">Calificación</th>
+                        <tr class="bg-gray-100 text-gray-700 border-b border-gray-300">
+                            <th class="py-2 px-2 text-left text-xs border-t border-l border-r border-gray-300">Cumplimiento Numérico</th>
+                            <th class="py-2 px-2 text-left text-xs border-t border-l border-r border-gray-300">Calificación</th>
                         </tr>
                     </thead>
                     <tbody class="text-gray-800 text-xs">
@@ -176,8 +176,8 @@
                         @endphp
 
                         @foreach ($intervalScores as $index => $score)
-                        <tr class="hover:bg-gray-100 transition duration-200">
-                            <td class="py-2 px-2 border-b border-gray-200">
+                        <tr class="border-b border-gray-300">
+                            <td class="py-2 px-2 border-l border-r border-gray-300">
                                 @if ($previousScore === null)
                                     {{ ceil($score) }} puntos
                                 @elseif ($index === array_key_last($intervalScores))
@@ -186,7 +186,7 @@
                                     {{ ceil($score) }} - {{ ceil($previousScore - 1) }}
                                 @endif
                             </td>
-                            <td class="py-2 px-2 border-b border-gray-200">{{ $evaluationCategories[$index] }}</td>
+                            <td class="py-2 px-2 border-r border-gray-300">{{ $evaluationCategories[$index] }}</td>
                             @php
                                 $previousScore = $score;
                             @endphp

@@ -30,8 +30,15 @@ class CategoryController extends Controller
 
     public function show($category)
     {
-        $category = Category::with('evaluations')->findOrFail($category);
-        return view('create_category.show', compact('category'));
+        // Cargamos la categoría con las evaluaciones y las evidencias anidadas
+        $category = Category::with(['evaluations.evidences'])->findOrFail($category);
+
+        // Verificamos si alguna de las evaluaciones tiene al menos una evidencia
+        $hasEvidences = $category->evaluations->contains(function ($evaluation) {
+            return $evaluation->evidences->isNotEmpty();
+        });
+
+        return view('create_category.show', compact('category', 'hasEvidences'));
     }
 
     public function edit($category)

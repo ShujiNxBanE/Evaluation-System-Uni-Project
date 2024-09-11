@@ -46,7 +46,7 @@ class AdminController extends Controller
             $totalEvaluations += $category->number_of_evaluations;
         }
 
-        $intervals = [100, 90, 80, 70, 60, 0];
+        $intervals = [100, 92, 84.5, 76.7, 69, 0];
         $intervalScores = [];
         foreach ($intervals as $percentage) {
             $intervalScores[] = ($percentage / 100) * $totalMaxScore;

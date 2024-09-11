@@ -33,7 +33,10 @@ class EvaluationController extends Controller
     public function show($evaluation)
     {
         $evaluation = Evaluation::find($evaluation);
-        return view('create_evaluation.show',compact('evaluation'));
+        // Verifica si la evaluación tiene evidencias
+        $hasEvidences = $evaluation->evidences()->exists();
+        // Pasa la evaluación y la variable booleana a la vista
+        return view('create_evaluation.show', compact('evaluation', 'hasEvidences'));
     }
 
     public function edit($evaluation)

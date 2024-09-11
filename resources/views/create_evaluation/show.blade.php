@@ -29,13 +29,24 @@
             <div class="flex space-x-4 mb-6">
                 <a href="{{ route('edit_evaluation', ['evaluation' => $evaluation->id]) }}" class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400">Editar Indicador</a>
 
-                <form action="{{ route('destroy_evaluation', ['evaluation' => $evaluation->id]) }}" method="POST" onsubmit="confirmDeletion(event, name = 'este indicador')" class="flex items-center">
-                    @method('DELETE')
-                    @csrf
-                    <button type="submit" class="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-400">
+                @if($hasEvidences)
+                    <!-- Botón para mostrar el modal si hay evidencias -->
+                    <button type="button" onclick="openModal()" class="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-400">
                         Eliminar Indicador
                     </button>
-                </form>
+
+                    <!-- Modal de confirmación -->
+                    <x-modalDeleteEvaluation />
+                @else
+                    <!-- Formulario original de eliminación si no hay evidencias -->
+                    <form action="{{ route('destroy_evaluation', ['evaluation' => $evaluation->id]) }}" method="POST" onsubmit="confirmDeletion(event, name = 'este indicador')" class="flex items-center">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-400">
+                            Eliminar Indicador
+                        </button>
+                    </form>
+                @endif
             </div>
         </div>
     </div>

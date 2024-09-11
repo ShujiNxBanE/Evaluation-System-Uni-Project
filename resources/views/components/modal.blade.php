@@ -13,20 +13,20 @@
           </thead>
           <tbody>
             <tr class="border-b">
-              <td class="py-2 px-4">0 puntos</td>
-              <td class="py-2 px-4"> <b>No observado.</b> El administrador no observa ningún indicador de la norma de calidad evaluada.</td>
+              <td class="py-2 px-4"><b>0</b> puntos</td>
+              <td class="py-2 px-4"><b>No observado.</b> El administrador no observa ningún indicador de la norma de calidad evaluada.</td>
             </tr>
             <tr class="border-b">
-              <td class="py-2 px-4">1 punto</td>
-              <td class="py-2 px-4"> <b>Escasamente observado.</b> El administrador ha identificado una mínima presencia de la norma de calidad evaluada. Esta área todavía necesita muchas mejoras.</td>
+              <td class="py-2 px-4"><b>1</b> punto</td>
+              <td class="py-2 px-4"><b>Escasamente observado.</b> El administrador ha identificado una mínima presencia de la norma de calidad evaluada. Esta área todavía necesita muchas mejoras.</td>
             </tr>
             <tr class="border-b">
-              <td class="py-2 px-4">2 puntos</td>
-              <td class="py-2 px-4"> <b>Implementación moderada.</b> El administrador ha identificado una implementación moderada de la norma de calidad. Esta área todavía necesita ciertas mejoras.</td>
+              <td class="py-2 px-4"><b>2</b> puntos</td>
+              <td class="py-2 px-4"><b>Implementación moderada.</b> El administrador ha identificado una implementación moderada de la norma de calidad. Esta área todavía necesita ciertas mejoras.</td>
             </tr>
             <tr>
-              <td class="py-2 px-4">3 puntos</td>
-              <td class="py-2 px-4"> <b>Cumple satisfactoriamente con el criterio.</b> El administrador ha determinado que la norma de calidad se está implementando satisfactoriamente y no hay necesidad de mejora en esta área.</td>
+              <td class="py-2 px-4"><b>3</b> puntos</td>
+              <td class="py-2 px-4"><b>Cumple satisfactoriamente con el criterio.</b> El administrador ha determinado que la norma de calidad se está implementando satisfactoriamente y no hay necesidad de mejora en esta área.</td>
             </tr>
           </tbody>
         </table>

@@ -58,16 +58,16 @@
             <table class="min-w-full bg-white rounded-lg shadow-md border border-gray-300">
                 <thead>
                     <tr class="bg-black text-white border-b border-gray-300">
-                        <th class="py-2 px-4 text-left">Nombre del Programa</th>
-                        <th class="py-2 px-4 text-left">Estado</th>
-                        <th class="py-2 px-4 text-left">Acciones</th>
+                        <th class="py-2 px-4 text-left border border-gray-400">Nombre del Programa</th>
+                        <th class="py-2 px-4 text-left border border-gray-400">Estado</th>
+                        <th class="py-2 px-4 text-left border border-gray-400">Acciones</th>
                     </tr>
                 </thead>
                 <tbody class="text-gray-900">
                     @foreach ($programs as $program)
                     <tr class="clickable-row hover:bg-gray-100 transition duration-200 border-b border-gray-300" onclick="window.location.href='{{ route('admin_show_program', ['program' => $program->id]) }}'">
-                        <td class="py-2 px-4">{{ $program->name }}</td>
-                        <td class="py-2 px-4">{{ $program->has_institutional_data ? 'Revisado' : 'No Revisado' }}</td>
+                        <td class="py-2 px-4 border-r border-gray-400">{{ $program->name }}</td>
+                        <td class="py-2 px-4 border-r border-gray-400">{{ $program->has_institutional_data ? 'Revisado' : 'No Revisado' }}</td>
                         <td class="py-2 px-4 flex gap-2 justify-center">
                             <a href="{{ route('edit_program', ['program' => $program->id]) }}"
                                 class="inline-block p-2 bg-blue-500 rounded-md hover:bg-blue-400 transition duration-200 text-white">

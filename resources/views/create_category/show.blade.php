@@ -28,13 +28,24 @@
             <a href="{{ route('edit_category', ['category' => $category->id]) }}" class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400">
                 Editar Categoría
             </a>
-            <form action="{{ route('destroy_category', ['category' => $category->id]) }}" method="POST" onsubmit="confirmDeletion(event, name = 'esta categoría')">
-                @method('DELETE')
-                @csrf
-                <button type="submit" class="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-400">
+            @if($hasEvidences)
+                <!-- Botón para mostrar el modal si hay evidencias -->
+                <button type="button" onclick="openModal()" class="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-400">
                     Eliminar Categoría
                 </button>
-            </form>
+
+                <!-- Modal de confirmación -->
+                <x-modalDeleteCategory />
+            @else
+                <!-- Formulario original de eliminación si no hay evidencias -->
+                <form action="{{ route('destroy_category', ['category' => $category->id]) }}" method="POST" onsubmit="confirmDeletion(event, name = 'esta categoría')">
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit" class="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-400">
+                        Eliminar Categoría
+                    </button>
+                </form>
+            @endif
         </div>
 
         <h3 class="text-xl font-semibold mb-4">Indicadores</h3>
